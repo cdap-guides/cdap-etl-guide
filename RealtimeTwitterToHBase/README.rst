@@ -6,6 +6,7 @@ ETL Realtime Template can be used to create an Adapter that reads from Realtime 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. We choose the etlRealtime application template since we want to create a Realtime Adapter. We choose the source to be Twitter source and provide the OAuth credentials as properties to the source. Since we want to persist the Tweets to HBase, we use a Table Sink. For the Table Sink, we choose the table name to be tweetTable (which will be created if the Table doesn't exist already) and we choose the row key to be id field of the Record emitted by the Twitter Source.
 
 You can create and start the Adapter by using the CDAP CLI (or you can choose the UI to pick and choose the plugins and enter the properties).
+Note: You need to fill in the OAuth credentials in config.json before creating the Adapter. You can visit https://dev.twitter.com for more information on how to get OAuth credentials for the Twitter source.
 
 cdap> create adapter tweetAdapter /RealtimeTwitterToHBase/config.json
 Successfully created adapter 'tweetAdapter'
