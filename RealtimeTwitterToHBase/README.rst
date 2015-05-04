@@ -39,11 +39,12 @@ Note: You need to fill in the OAuth credentials in config.json before creating t
 
 
 ::
-cdap> create adapter tweetAdapter RealtimeTwitterToHBase/config.json
-Successfully created adapter 'tweetAdapter'
 
-cdap> start adapter tweetAdapter
-Successfully started adapter 'tweetAdapter'
+  cdap> create adapter tweetAdapter RealtimeTwitterToHBase/config.json
+  Successfully created adapter 'tweetAdapter'
+
+  cdap> start adapter tweetAdapter
+  Successfully started adapter 'tweetAdapter'
 
 
 You can verify that the data is being written to the Table by viewing the contents of the Table, tweetTable, using the HBase shell.
@@ -57,9 +58,10 @@ Stopping and Deleting
 You can stop and delete the Adapter using the CDAP CLI.
 
 ::
-cdap> stop adapter tweetAdapter
-Successfully stopped adapter 'tweetAdapter'
 
-cdap> delete adapter tweetAdapter
-Successfully deleted adapter 'tweetAdapter'
+  cdap> stop adapter tweetAdapter
+  Successfully stopped adapter 'tweetAdapter'
+
+  cdap> delete adapter tweetAdapter
+  Successfully deleted adapter 'tweetAdapter'
 
