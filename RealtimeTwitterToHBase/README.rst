@@ -1,9 +1,15 @@
 Realtime Twitter To HBase Adapter Configuration
 ===============================================
 
-Lets say we want to fetch Tweets from Twitter in Realtime and persist it in an HBase Table.
+Introduction
+------------
 
+Lets say we want to fetch Tweets from Twitter in Realtime and persist it in an HBase Table. 
 ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and persists it to a Sink. In this example, we will read messages from Twitter in realtime and use a TableSink to write the Tweets to HBase.
+
+
+Configuration
+-------------
 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. We choose the ETL Realtime Application Template since we want to create a Realtime Adapter. 
 We set the Application Template name using the "template" property.
@@ -24,7 +30,9 @@ Similarly, for selecting the Sink, we use the "sink" property. The Table Sink ex
 
 Since we don't use any transforms in this Adapter, we leave that as an empty array.
 
-::
+
+Creating and Running
+--------------------
 
 You can create and start the Adapter by using the CDAP CLI (or the UI, for a more visual approach).
 Note: You need to fill in the OAuth credentials in config.json before creating the Adapter. You can visit https://dev.twitter.com for more information on how to get OAuth credentials for the Twitter Source.
@@ -40,11 +48,14 @@ cdap> start adapter tweetAdapter
 Successfully started adapter 'tweetAdapter'
 ```
 
-::
 
 You can verify that the data is being written to the Table by viewing the contents of the Table, tweetTable, using the HBase shell.
 
 You have now successfully created an Adapter that gets Tweet data from Twitter and writes to an HBase Table.
+
+
+Stopping and Deleting
+---------------------
 
 You can stop and delete the Adapter using the CDAP CLI.
 
