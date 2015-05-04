@@ -1,0 +1,24 @@
+{
+  "template":"etlBatch",
+  "config":{
+    "schedule":"*/5 * * * *",
+    "source":{
+      "name":"Stream",
+      "properties":{
+        "name":"myStream",
+        "duration":"10m",
+        "format":"csv",
+        "schema":"{\"type\":\"record\",\"name\":\"event\",\"fields\":[{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
+        "format.setting.delimiter":"|"
+      }
+    },
+    "sink":{
+      "name":"TPFSAvro",
+      "properties":{
+        "schema":"{\"type\":\"record\",\"name\":\"streamEvent\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"headers\",\"type\":{\"type\":\"map\",\"keys\":\"string\",\"values\":\"string\"}},{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
+        "name":"trades_converted"
+      }
+    },
+    "transforms":[]
+  }
+}
