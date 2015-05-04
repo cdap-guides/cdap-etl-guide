@@ -1,0 +1,31 @@
+{
+  "config": {
+    "schedule": "*/5 * * * *",
+    "source": {
+      "name": "Database",
+      "properties": {
+        "importQuery": "select col1,col2,col3,col4 from my_table where col1 < 5",
+        "countQuery": "select count(col1) from my_table where col1 < 5",
+        "connectionString": "jdbc:postgresql://localhost:5432/testdb",
+        "driverClass": "org.postgresql.Driver",
+        "tableName": "my_table",
+        "user": "postgres",
+        "password": "",
+        "jdbcPluginName": "postgres",
+        "jdbcPluginType": "jdbc"
+      }
+    },
+    "sink": {
+      "name": "Table",
+      "properties": {
+        "name": "hbase_postgres_table",
+		"schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
+		"schema.row.field": "col1"
+      }
+    },
+    "transforms": [
+    ]
+  },
+  "description": "ETL using a Database table as source and a CDAP HBase Table as sink",
+  "template": "ETLBatch"
+}
