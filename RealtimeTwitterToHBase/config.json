@@ -10,10 +10,10 @@
         "source": {
             "name": "Twitter",
             "properties": {
-                "AccessToken": "xyz",
-                "AccessTokenSecret": "xyz",
-                "ConsumerKey": "xyz",
-                "ConsumerSecret": "xyz"
+                "AccessToken": "GetAccessTokenFromTwitter",
+                "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
+                "ConsumerKey": "GetConsumerKeyFromTwitter",
+                "ConsumerSecret": "GetConsumerSecretFromTwitter"
             }
         },
         "transforms": []
