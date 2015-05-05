@@ -12,19 +12,19 @@ Note: If you want to create your own Source and Sink, you can find more instruct
 What You Will Create
 ====================
 
-Realtime Twitter To HBase <link to dir in github>
+[Realtime Twitter To HBase]
 -------------------------
 
 In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
 
 
-Realtime Kafka To HBase <link to dir in github>
+[Realtime Kafka To HBase]
 -----------------------
 
 In this Adapter, we will fetch messages from Kafka in Realtime and write to HBase Table.
 
 
-CDAP Stream To Impala <link to dir in github>
+[CDAP Stream To Impala]
 ---------------------
 
 In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
