@@ -66,6 +66,21 @@ The guide provides activemq-all-5.11.1.json file as an example based on Apache A
 #. `className`: 
 #. `description`: The description of this plugin.
 
+Available Properties for Stream Sink
+====================================
+
+To configure the sink, there are some properties that are needed to make it work properly:
+
+#. ``name``: The name of the stream to output to. Must be a valid stream name. The stream will be created if it does not exist.
+#. ``headers.field``: The name of the header field from the incoming events to be processed by the Sink.
+#. ``body.field``: The name of the body field from the incoming events to be processed by the Sink.
+
+In this guide, the JMS source will send events to the Stream sink as StructuredRecord format with the data stored in a body field called message.
+
+The ``config.json`` file sets ``body.field`` as ``message`` to let Stream sink know to retrieve the data from ``messages`` field of the incoming
+StructuredRecord events.
+
+
 Share and Discuss!
 ==================
 
