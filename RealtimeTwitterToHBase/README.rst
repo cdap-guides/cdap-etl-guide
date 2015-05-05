@@ -5,7 +5,7 @@ Introduction
 ------------
 
 Lets say we want to fetch Tweets from Twitter in Realtime and persist it in an HBase Table. 
-ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and persists it to a Sink. In this example, we will read messages from Twitter in realtime and use a TableSink to write the Tweets to HBase.
+ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and persists it to a Realtime Sink. In this example, we will read messages from Twitter and use a TableSink to write the Tweets to HBase.
 
 
 Configuration
@@ -14,14 +14,20 @@ Configuration
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. We choose the ETL Realtime Application Template since we want to create a Realtime Adapter. 
 We set the Application Template name using the "template" property.
 
-We chose the Source to be Twitter Source and provide the OAuth credentials as properties to the Source. Since we want to persist the Tweets to HBase, we use a Table Sink. For the Table Sink, we choose the table name to be tweetTable (which will be created if the Table doesn't exist already) and we choose the row key to be id field of the Record emitted by the Twitter Source.
+Source
+------
 
-For setting the Source name, we use the "source" property. The Twitter Source expects four properties (OAuth credentials for Twitter).
+We choose the Twitter Source and provide the OAuth credentials as properties to the Source. Since we want to persist the Tweets to HBase, we use a Table Sink. For the Table Sink, we set the table name to be tweetTable (which will be created if the Table doesn't exist already) and we set the row key to be id field of the Record emitted by the Twitter Source.
+
+For selecting the Source, we use the "source" property. The Twitter Source expects four properties (OAuth credentials for Twitter).
 
 - AccessToken
 - AccessTokenSecret
 - ConsumerKey
 - ConsumerSecret
+
+Sink
+----
 
 Similarly, for selecting the Sink, we use the "sink" property. The Table Sink expects two properties.
 
