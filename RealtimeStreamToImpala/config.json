@@ -5,7 +5,7 @@
     "source":{
       "name":"Stream",
       "properties":{
-        "name":"myStream",
+        "name":"trades",
         "duration":"10m",
         "format":"csv",
         "schema":"{\"type\":\"record\",\"name\":\"event\",\"fields\":[{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
