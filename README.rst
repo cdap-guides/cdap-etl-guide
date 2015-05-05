@@ -43,7 +43,7 @@ What You Will Create
 .. |RealtimeJMSToStream| replace:: **Realtime JMS To Stream:**
 .. RealtimeJMSToStream: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeJMSToStream
 
-- |RealtimeJMSToStream|_ In this Adapter, we will read messages from JMS producer in Realtime and write to an CDAP Stream.
+- |RealtimeJMSToStream|_ In this Adapter, we will read messages from a JMS producer in Realtime and write to a CDAP Stream.
 
 What You Will Need
 ==================

@@ -1,25 +1,30 @@
+===============================================================================
 Realtime Java Message Service (JMS) Source To Stream Sink Adapter Configuration
 ===============================================================================
 
 The ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and pass it to a Sink to be processed further.
-In this example, we will read messages from Jave Message Service (JMS) source in realtime and use a Stream Sink to write the messages to CDAP Stream.
+
+In this example, we will poll messages from Java Message Service (JMS) source in realtime. and use a Stream Sink to write the messages to CDAP Stream.
 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. 
 
-Our sample Adapter uses the following components:
+Our sample Adapter uses these components:
 
 - ETLRealtime Application Template, since we want to perform ETL in realtime
-- JMS source, using implementation of JMS from Apache ActiveMQ version 5.11.1
-- Stream sink to hold the incoming messages to be process by downstream program like CDAP Flows 
+- JMS source, using the implementation of JMS from Apache ActiveMQ, version 5.11.1
+- Stream sink to hold the incoming messages to be processed by a downstream program such as a CDAP Flow
 
 You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach).
 
-The JMS source uses the JMS APIs to communicate with JMS server, so for The sample Adapter will use the Apache ActiveMQ version 5.11.1
-as the implementation of the JMS APIs. One important thing to remember is that you need to use the right version of JMS implementation
-for both the client and the target server to make sure the message format is respected when the JMS source start polling messages.
+The realtime JMS source uses generic JMS interface to communicate with JMS broker, so the source requires implementation of the JMS interfaces
+to be able to work properly as separate adapter plugin.
 
-The JMS realtime source requires an additional plugin jar that bundle all JMS specific implementations into a jar. 
-For Apache ActiveMQ example we will be using the activemq-all-5.11.1.jar file that contains most of the dependencies needed. 
+One important thing to remember you need to use the identical version of JMS for both the client and the target server to ensure 
+that the message format is respected when the JMS source start polling messages.
+
+The realtime JMS source requires an additional plugin jar that bundle all JMS specific implementations into a jar. 
+For Apache ActiveMQ, we will be using the ``activemq-all-5.11.1.jar`` file that contains most of the required dependencies.
+
 For each additionl plugin jars, there should be accompanying JSON file with the same name as the jar name, but with .json extension, 
 to describe about the plugin so the adapter knows about it and load it as part of the plugon class loader. The jar and the JSON counterpart files
 should be put in the templates/plugins/ETLRealtime directory.
@@ -47,7 +52,7 @@ passed to underlyong JNDI initial context to configure the implementation of the
 For example, the Apache ActiveMQ requires the Topic or Queue name to be set as topic.<destination name> or queue.<destination name> property key names
 in order for the JNDI context to be resolved.
 
-The config.json file included shows the Adapter configuration file with sample values for the JMS source properties.
+The ``config.json`` file included shows the Adapter configuration file with sample values for the JMS source properties.
 
 The JMS APIs Implementation Plugin JSON Configuration File
 ===========================================================
