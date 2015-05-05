@@ -40,8 +40,8 @@ In this Adapter, we will read data from a HBase Table and write to a RDBMS Table
 What You Will Need
 ==================
 
-- `JDK 7 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__
-- `CDAP SDK <http://docs.cdap.io/cdap/current/en/developers-manual/getting-started/standalone/index.html>`__
+- [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [CDAP SDK](http://docs.cdap.io/cdap/current/en/developers-manual/getting-started/standalone/index.html)
 
 Let's Begin!
 ============
@@ -60,7 +60,7 @@ Now navigate to the Adapter that you want to create and you will find further in
 Share and Discuss!
 ==================
 
-Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.com/forum/#!forum/cdap-user>`__.
+Have a question? Discuss at the [CDAP User Mailing List](https://groups.google.com/forum/#!forum/cdap-user).
 
 License
 =======
