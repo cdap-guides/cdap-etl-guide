@@ -13,19 +13,16 @@ What You Will Create
 ====================
 
 [Realtime Twitter To HBase](/RealtimeTwitterToHBase/)
----------------------------
 
 In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
 
 
 [Realtime Kafka To HBase](/RealtimeKafkaToHBase/)
--------------------------
 
 In this Adapter, we will fetch messages from Kafka in Realtime and write to HBase Table.
 
 
 [Batch CDAP Stream To Impala](/StreamToImpala/)
------------------------------
 
 In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
 
