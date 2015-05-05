@@ -39,11 +39,6 @@ cluster, use the Impala shell to connect to Impala::
 Since we are using Impala, no MapReduce jobs are launched, and the query comes back in
 about one second.
 
-Now that you have data in CDAP and are able to explore your data, you can use CDAP's many
-useful and powerful services, such as the ability to dynamically scale processing units,
-distributed transactions, and service discovery, to write Applications that meet your
-business needs.
-
 You can stop and delete the Adapter using the CDAP CLI::
 
   cdap> stop adapter trades_conversion
