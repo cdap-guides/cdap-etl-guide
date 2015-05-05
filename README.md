@@ -12,31 +12,30 @@ Note: If you want to create your own Source and Sink, you can find more instruct
 What You Will Create
 ====================
 
-[Realtime Twitter To HBase](/RealtimeTwitterToHBase/)
+###[Realtime Twitter To HBase](/RealtimeTwitterToHBase/)
 
 In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
 
 
-[Realtime Kafka To HBase](/RealtimeKafkaToHBase/)
+###[Realtime Kafka To HBase](/RealtimeKafkaToHBase/)
 
 In this Adapter, we will fetch messages from Kafka in Realtime and write to HBase Table.
 
 
-[Batch CDAP Stream To Impala](/StreamToImpala/)
+###[Batch CDAP Stream To Impala](/StreamToImpala/)
 
 In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
 
 
-[RDBMS To HBase](/DBTableToHBaseTable/)
-----------------
+###[RDBMS To HBase](/DBTableToHBaseTable/)
 
 In this Adapter, we will read data from a RDBMS Table and write to HBase Table.
 
 
-[HBase to RDMBS](/HBaseTableToDBTable/)
-----------------
+###[HBase to RDMBS](/HBaseTableToDBTable/)
 
 In this Adapter, we will read data from a HBase Table and write to a RDBMS Table.
+
 
 What You Will Need
 ==================
