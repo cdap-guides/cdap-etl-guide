@@ -1,0 +1,8 @@
+[
+    {
+        "name": "mysql",
+        "type": "jdbc",
+        "description": "MYSQL JDBC external plugin",
+        "className": "com.mysql.jdbc.Driver"
+    }
+]
