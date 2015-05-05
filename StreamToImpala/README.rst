@@ -1,5 +1,5 @@
-Batch Stream To Impala Adapter Configuration
-===============================================
+Batch CDAP Stream To Impala Adapter Configuration
+=================================================
 
 The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and persists it to a Sink.
 In this example, we will read events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
