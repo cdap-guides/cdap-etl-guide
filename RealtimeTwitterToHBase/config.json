@@ -1,0 +1,23 @@
+{
+    "config": {
+        "sink": {
+            "name": "Table",
+            "properties": {
+                "name": "tweetTable",
+                "schema.row.field": "id"
+            }
+        },
+        "source": {
+            "name": "Twitter",
+            "properties": {
+                "AccessToken": "GetAccessTokenFromTwitter",
+                "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
+                "ConsumerKey": "GetConsumerKeyFromTwitter",
+                "ConsumerSecret": "GetConsumerSecretFromTwitter"
+            }
+        },
+        "transforms": []
+    },
+    "template": "ETLRealtime"
+}
+
