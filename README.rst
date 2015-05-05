@@ -12,15 +12,15 @@ What You Will Create
 ====================
 
 `Batch Database Table to CDAP HBase Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/DBTableToHBaseTable>`__
---------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 In this Adapter, we will export the contents of a Database Table to a CDAP HBase table in Batch.
 
 `Batch CDAP HBase Table to Database Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/HBaseTableToDBTable>`__
---------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
 In this Adapter, we will export the contents of a CDAP HBase Table to a Database Table in Batch.
 
 `Batch CDAP Stream To Impala <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/StreamToImpala>`__
--------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
 
 `Realtime Kafka To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase>`__
