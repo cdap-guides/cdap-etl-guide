@@ -40,6 +40,10 @@ What You Will Create
 
 - |RealtimeTwitterToHBase|_ In this Adapter, we will read Tweets from Twitter in Realtime and write to an HBase Table.
 
+.. |RealtimeJMSToStream| replace:: **Realtime JMS To Stream:**
+.. RealtimeJMSToStream: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeJMSToStream
+
+- |RealtimeJMSToStream|_ In this Adapter, we will read messages from JMS producer in Realtime and write to an CDAP Stream.
 
 What You Will Need
 ==================
