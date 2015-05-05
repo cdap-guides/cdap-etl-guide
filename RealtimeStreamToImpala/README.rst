@@ -10,7 +10,21 @@ The config.json contains a sample Adapter configuration that you can use to acco
 - Stream source, configured to read from the trades Stream
 - TPFSAvro sink, configured to write to the trades_converted Dataset
 
-You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach)::
+First, load some trade events to be processed by our Adapter::
+
+  cdap> create stream trades
+  Successfully created stream 'trades'
+
+  cdap> send stream trades 'NFLX,441.07,50'
+  Successfully sent stream event to stream 'trades'
+
+  cdap> send stream trades 'AAPL,118.63,100'
+  Successfully sent stream event to stream 'trades'
+
+  cdap> send stream trades 'GOOG,528.48,10'
+  Successfully sent stream event to stream 'trades'
+
+Then you can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach)::
 
   cdap> create adapter trades_conversion RealtimeStreamToImpala/config.json
   Successfully created adapter 'trades_conversion'
