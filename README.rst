@@ -3,31 +3,42 @@ Creating ETL Pipelines using CDAP ETL Application Templates
 ===========================================================
 
 Using CDAP ETL Application Templates, you can create ETL Pipelines (ETL Adapters) with just a JSON configuration file. 
-CDAP ships with a set of built-in Sources, Sinks and Transforms [http://docs.cask.co/cdap/current/en/application-templates/index.html] 
+CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/application-templates/index.html>`__
 which can be used to create Batch ETL and Realtime ETL Adapters right out of the box.
 
-Note: If you want to create your own Source and Sink, you can find more instructions on how to do that here : 
-[http://docs.cask.co/cdap/current/en/application-templates/etl/custom.html]
+Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/application-templates/etl/custom.html>`__.
 
 What You Will Create
 ====================
 
-[Realtime Twitter To HBase]
--------------------------
+`Realtime Twitter To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase>`__
+-------------------------------------------------------------------------------------------------------------------------
 
 In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
 
 
-[Realtime Kafka To HBase]
------------------------
+`Realtime Kafka To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase>`__
+---------------------------------------------------------------------------------------------------------------------
 
 In this Adapter, we will fetch messages from Kafka in Realtime and write to HBase Table.
 
 
-[CDAP Stream To Impala]
----------------------
+`CDAP Stream To Impala <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/StreamToImpala>`__
+-------------------------------------------------------------------------------------------------------------
 
 In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
+
+
+`Database Table to HBase Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/DBTableToHBaseTable>`__
+--------------------------------------------------------------------------------------------------------------------------
+
+In this Adapter, we will export the contents of a Database Table to a CDAP HBase table in Batch.
+
+
+`HBase Table to Database Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/HBaseTableToDBTable>`__
+--------------------------------------------------------------------------------------------------------------------------
+
+In this Adapter, we will export the contents of a CDAP HBase Table to a Database Table in Batch.
 
 
 What You Will Need
