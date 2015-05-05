@@ -1,5 +1,5 @@
 ==============================================================
-CDAP HBase Table To Database Table Batch Adapter Configuration
+Batch CDAP HBase Table To Database Table Adapter Configuration
 ==============================================================
 
 The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and persists it to a Sink.
