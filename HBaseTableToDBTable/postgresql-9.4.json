@@ -1,0 +1,8 @@
+[
+  {
+    "name": "postgres",
+    "type": "jdbc",
+    "description": "Postgresql External JDBC Plugin",
+    "className": "org.postgresql.Driver"
+  }
+]
