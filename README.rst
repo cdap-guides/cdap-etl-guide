@@ -11,35 +11,25 @@ Note: If you want to create your own Source and Sink, you can find more instruct
 What You Will Create
 ====================
 
-`Realtime Twitter To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase>`__
--------------------------------------------------------------------------------------------------------------------------
+`Batch Database Table to CDAP HBase Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/DBTableToHBaseTable>`__
+--------------------------------------------------------------------------------------------------------------------------
+In this Adapter, we will export the contents of a Database Table to a CDAP HBase table in Batch.
 
-In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
+`Batch CDAP HBase Table to Database Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/HBaseTableToDBTable>`__
+--------------------------------------------------------------------------------------------------------------------------
+In this Adapter, we will export the contents of a CDAP HBase Table to a Database Table in Batch.
 
+`Batch CDAP Stream To Impala <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/StreamToImpala>`__
+-------------------------------------------------------------------------------------------------------------
+In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
 
 `Realtime Kafka To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase>`__
 ---------------------------------------------------------------------------------------------------------------------
-
 In this Adapter, we will fetch messages from Kafka in Realtime and write to HBase Table.
 
-
-`CDAP Stream To Impala <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/StreamToImpala>`__
--------------------------------------------------------------------------------------------------------------
-
-In this Adapter, we will make the events ingested in a CDAP Stream queryable through Impala.
-
-
-`Database Table to HBase Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/DBTableToHBaseTable>`__
---------------------------------------------------------------------------------------------------------------------------
-
-In this Adapter, we will export the contents of a Database Table to a CDAP HBase table in Batch.
-
-
-`HBase Table to Database Table <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/HBaseTableToDBTable>`__
---------------------------------------------------------------------------------------------------------------------------
-
-In this Adapter, we will export the contents of a CDAP HBase Table to a Database Table in Batch.
-
+`Realtime Twitter To HBase <https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase>`__
+-------------------------------------------------------------------------------------------------------------------------
+In this Adapter, we will read Tweets from Twitter in Realtime and write to HBase Table.
 
 What You Will Need
 ==================
