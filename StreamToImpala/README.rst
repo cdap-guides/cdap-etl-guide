@@ -1,12 +1,12 @@
-Realtime Stream To Impala Adapter Configuration
+Batch Stream To Impala Adapter Configuration
 ===============================================
 
-The ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and persists it to a Sink.
-In this example, we will read events from a Stream in realtime and use a TPFS Sink to make the data queryable by Impala.
+The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and persists it to a Sink.
+In this example, we will read events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. Our sample Adapter uses the following components:
 
-- etlRealtime Application Template, since we want to perform ETL in realtime
+- ETLBatch Application Template, since we want to perform ETL in realtime
 - Stream source, configured to read from the trades Stream
 - TPFSAvro sink, configured to write to the trades_converted Dataset
 
@@ -26,7 +26,7 @@ First, load some trade events to be processed by our Adapter::
 
 Then you can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach)::
 
-  cdap> create adapter trades_conversion RealtimeStreamToImpala/config.json
+  cdap> create adapter trades_conversion StreamToImpala/config.json
   Successfully created adapter 'trades_conversion'
 
   cdap> start adapter trades_conversion
