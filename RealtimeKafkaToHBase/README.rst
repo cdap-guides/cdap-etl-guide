@@ -6,7 +6,7 @@ In this example, we will read messages from Kafka in realtime and use a TableSin
 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. Our sample Adapter uses the following components:
 
-- etlRealtime Application Template, since we want to perform ETL in realtime
+- ETLRealtime Application Template, since we want to perform ETL in realtime
 - Kafka source, with our custom kafka.zookeeper configuration
 - Table sink, to write the Kafka events to HBase using the Table dataset
 
