@@ -46,7 +46,7 @@ To configure the source, these properties are required:
 
 #. ``jms.provider.url``: The URL of the JMS server broker to connect to
 
-#. ``ConnectionFactory``: Change the format of the name for the connectionfactory in JMS source plugin. The default value is ConnectionFactory. 
+#. ``ConnectionFactory``: Change the format of the name for the connectionfactory in JMS source plugin. The default value is ConnectionFactory
 
 In addition to the properties expected by the JMS source, you can pass additional key-value pairs of properties that 
 will be passed through to underlying JNDI initial context to configure the implementation of the JMS APIs.
@@ -66,7 +66,7 @@ The guide provides the ``activemq-all-5.11.1.json`` file as an example based on 
 #. ``type``: Type of the plugin; as of now, it has to be ``JMSProvider``
 #. ``name``: Name of this plugin; as of now, it has to be ``java.naming.factory.initial``
 #. `className`: Fully qualified name of the main class for the intial context factory implementation. For ActiveMQ it is ``org.apache.activemq.jndi.ActiveMQInitialContextFactory``
-#. `description`: The description of this plugin.
+#. `description`: The description of this plugin
 
 Available Properties for Stream Sink
 ====================================
