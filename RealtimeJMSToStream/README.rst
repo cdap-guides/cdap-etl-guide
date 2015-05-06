@@ -4,9 +4,9 @@ Realtime Java Message Service (JMS) Source To Stream Sink Adapter Configuration
 
 The ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and pass it to a Sink to be processed further.
 
-In this example, we will poll messages from Java Message Service (JMS) source in realtime. and use a Stream Sink to write the messages to CDAP Stream.
+In this example, we will poll messages from a Java Message Service (JMS) source in realtime and use a Stream Sink to write the messages to a CDAP Stream.
 
-The config.json contains a sample Adapter configuration that you can use to accomplish the above task. 
+The config.json contains a sample Adapter configuration that you can use to accomplish this task. 
 
 Our sample Adapter uses these components:
 
