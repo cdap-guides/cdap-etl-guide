@@ -74,8 +74,8 @@ Available Properties for Stream Sink
 To configure the sink, these properties are required:
 
 #. ``name``:  Name of the stream to output to; the stream will be created if it does not already exist
-#. ``headers.field``: Name of the header field from the incoming events to be processed by the Sink.
-#. ``body.field``: Nme of the body field from the incoming events to be processed by the Sink.
+#. ``headers.field``: Name of the header field from the incoming events to be processed by the Sink
+#. ``body.field``: Nme of the body field from the incoming events to be processed by the Sink
 
 In this Adapter, the JMS source will send events to the Stream sink in the ``StructuredRecord`` format, with the data stored in a body field called ``message``.
 
