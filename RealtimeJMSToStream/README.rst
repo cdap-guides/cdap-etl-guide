@@ -16,69 +16,71 @@ Our sample Adapter uses these components:
 
 You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach).
 
-The realtime JMS source uses generic JMS interface to communicate with JMS broker, so the source requires implementation of the JMS interfaces
-to be able to work properly as separate adapter plugin.
+The realtime JMS source uses a generic JMS interface to communicate with a JMS broker, so the source requires that the JMS interfaces 
+be implemented, in order to function as a separate Adapter plugin.
 
 One important thing to remember you need to use the identical version of JMS for both the client and the target server to ensure 
 that the message format is respected when the JMS source start polling messages.
 
-The realtime JMS source requires an additional plugin jar that bundle all JMS specific implementations into a jar. 
+The realtime JMS source requires an additional plugin jar that bundles all JMS specific implementations and the dependencies into a jar file. 
 For Apache ActiveMQ, we will be using the ``activemq-all-5.11.1.jar`` file that contains most of the required dependencies.
 
-For each additionl plugin jars, there should be accompanying JSON file with the same name as the jar name, but with .json extension, 
-to describe about the plugin so the adapter knows about it and load it as part of the plugon class loader. The jar and the JSON counterpart files
-should be put in the templates/plugins/ETLRealtime directory.
+For each additional plugin jar, there should be an accompanying JSON file, with the same name as the jar name but with the .json extension, to describe the plugin. 
+This is so the adapter will know of it and load it as part of the plugin class loader.
 
-There are additional jars that should be copied into templates/plugins/ETLRealtime/lib directory. These jars will be available as part of combined 
+The jar and the JSON counterpart files should be put in the ``templates/plugins/ETLRealtime`` directory.
+
+There are additional jars that should be copied into ``templates/plugins/ETLRealtime/lib``	 directory. These jars will be available as part of combined 
 class loaders for all realtime plugins so need to copy jar containing JMS specifications API, for example 
 
 Available Properties for JMS Source
 ===================================
 
-To configure the source, there are some properties that are needed to make it work properly:
+To configure the source, these properties are required:
 
-#. ``jms.destination.name``: Name of the JMS destination (either Topic or Queue name) to get messages
+#. ``jms.destination.name``: Name of the JMS destination (either Topic or Queue name) to receive messages
 
-#. ``jms.messages.receive``: This is the Max number messages should be retrieved per poll. The default value is 50
+#. ``jms.messages.receive``: Maximum number of messages to be retrieved per poll; the default value is 50
 
-#. ``jms.factory.initial``: The fully qualified class name of the factory class that will create an initial context
+#. ``jms.factory.initial``: The fully-qualified classname of the factory class that will create an initial context
 
-#. ``jms.provider.url``: This is the URL of the JMS server broker to connect to
+#. ``jms.provider.url``: The URL of the JMS server broker to connect to
 
 #. ``ConnectionFactory``: Change the format of the name for the connectionfactory in JMS source plugin. The default value is ConnectionFactory. 
 
-In addition to the properties expected by the JMS source, you could always pass adiitional key-value pairs of properties that will be 
-passed to underlyong JNDI initial context to configure the implementation of the JMS APIs.
-For example, the Apache ActiveMQ requires the Topic or Queue name to be set as topic.<destination name> or queue.<destination name> property key names
-in order for the JNDI context to be resolved.
+In addition to the properties expected by the JMS source, you can pass additional key-value pairs of properties that 
+will be passed through to underlying JNDI initial context to configure the implementation of the JMS APIs.
+
+For example, the Apache ActiveMQ requires that the Topic or Queue name be set as ``topic.<destination name>`` or ``queue.<destination name>`` 
+property key names in order for the JNDI context to be resolved.
 
 The ``config.json`` file included shows the Adapter configuration file with sample values for the JMS source properties.
 
 The JMS APIs Implementation Plugin JSON Configuration File
 ===========================================================
 
-As mentioned before, the JMS source requires additional plugin to actually does the execution of polling the messages from the target server.
+As mentioned above, the JMS source requires an additional plugin that actually performs the execution of polling messages from the target server.
 
-The guide provides activemq-all-5.11.1.json file as an example based on Apache ActiveMQ 5.11.1 version:
+The guide provides the ``activemq-all-5.11.1.json`` file as an example based on the Apache ActiveMQ, version 5.11.1:
 
-#. ``type``: This is the type of the plugin. As of now it has to be JMSProvider.
-#. ``name``: The name of this plugin. As of now it has to be java.naming.factory.initial.
-#. `className`: 
+#. ``type``: Type of the plugin; as of now, it has to be ``JMSProvider``
+#. ``name``: Name of this plugin; as of now, it has to be ``java.naming.factory.initial``
+#. `className`: Fully qualified name of the main class for the intial context factory implementation. For ActiveMQ it is ``org.apache.activemq.jndi.ActiveMQInitialContextFactory``
 #. `description`: The description of this plugin.
 
 Available Properties for Stream Sink
 ====================================
 
-To configure the sink, there are some properties that are needed to make it work properly:
+To configure the sink, these properties are required:
 
-#. ``name``: The name of the stream to output to. Must be a valid stream name. The stream will be created if it does not exist.
-#. ``headers.field``: The name of the header field from the incoming events to be processed by the Sink.
-#. ``body.field``: The name of the body field from the incoming events to be processed by the Sink.
+#. ``name``:  Name of the stream to output to; the stream will be created if it does not already exist
+#. ``headers.field``: Name of the header field from the incoming events to be processed by the Sink.
+#. ``body.field``: Nme of the body field from the incoming events to be processed by the Sink.
 
-In this guide, the JMS source will send events to the Stream sink as StructuredRecord format with the data stored in a body field called message.
+In this Adapter, the JMS source will send events to the Stream sink in the ``StructuredRecord`` format, with the data stored in a body field called ``message``.
 
-The ``config.json`` file sets ``body.field`` as ``message`` to let Stream sink know to retrieve the data from ``messages`` field of the incoming
-StructuredRecord events.
+The ``config.json`` file sets ``body.field`` as ``message`` to let the Stream sink know to retrieve the data from the ``message`` field of 
+the incoming ``StructuredRecord`` events.
 
 
 Share and Discuss!
