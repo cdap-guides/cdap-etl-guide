@@ -1,5 +1,5 @@
 {
-  "template": "etlRealtime",
+  "template": "ETLRealtime",
   "config": {
     "source": {
       "name": "Kafka",
