@@ -10,7 +10,7 @@
       }
     },
     "sink": {
-      "name": "TableSink",
+      "name": "Table",
       "properties": {
         "name": "metrics",
         "schema.row.field": "message"
