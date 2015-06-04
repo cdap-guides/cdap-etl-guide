@@ -6,7 +6,6 @@
       "properties": {
         "columns": "col1,col2,col3,col4",
         "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-        "driverClass": "org.postgresql.Driver",
         "tableName": "dest_table",
         "user": "postgres",
         "password": "",
