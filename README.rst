@@ -4,7 +4,7 @@ Creating ETL Pipelines using CDAP ETL Application Templates
 
 Using CDAP ETL Application Templates, you can create ETL Pipelines (ETL Adapters) with just a JSON configuration file. 
 CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/application-templates/index.html>`__
-which can be used to create Batch ETL and Realtime ETL Adapters right out of the box.
+which can be used to create Batch ETL and Real-time ETL Adapters right out of the box.
 
 Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/application-templates/etl/custom.html>`__.
 
@@ -29,16 +29,16 @@ What You Will Create
 - |StreamToImpala|_ This Adapter makes the events ingested in a CDAP Stream queryable through Impala.
 
 
-.. |RealtimeKafkaToHBase| replace:: **Realtime Kafka To HBase:**
-.. _RealtimeKafkaToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase
+.. |Real-timeKafkaToHBase| replace:: **Real-time Kafka To HBase:**
+.. _Real-timeKafkaToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase
 
-- |RealtimeKafkaToHBase|_ With this Adapter, we will fetch messages from Kafka in Realtime and write to an HBase Table.
+- |Real-timeKafkaToHBase|_ With this Adapter, we will fetch messages from Kafka in real-time and write to an HBase Table.
 
 
-.. |RealtimeTwitterToHBase| replace:: **Realtime Twitter To HBase:**
-.. _RealtimeTwitterToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase
+.. |Real-timeTwitterToHBase| replace:: **Real-time Twitter To HBase:**
+.. _Real-timeTwitterToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase
 
-- |RealtimeTwitterToHBase|_ In this Adapter, we will read Tweets from Twitter in Realtime and write to an HBase Table.
+- |Real-timeTwitterToHBase|_ In this Adapter, we will read Tweets from Twitter in real-time and write to an HBase Table.
 
 
 What You Will Need
