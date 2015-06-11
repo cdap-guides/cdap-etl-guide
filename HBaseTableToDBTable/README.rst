@@ -32,7 +32,6 @@ Configurations for the CDAP HBase Table Source
 Configurations for the Database Table Sink
 ------------------------------------------
 
-#. ``driverClass``: This is the JDBC driver class used to connect to your database.
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 #. ``tableName``: This is the table to which you wish to export.
 #. ``user``: This is the username used to connect to the specified database. It is required for databases 

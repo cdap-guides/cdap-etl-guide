@@ -26,8 +26,6 @@ before creating the Adapter.
 Configurations for the Database Table Source
 --------------------------------------------
 
-#. ``driverClass``: This is the JDBC driver class used to connect to your database.
-
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 
 #. ``tableName``: This is the table from which you wish to import.
