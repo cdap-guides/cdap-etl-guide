@@ -28,8 +28,6 @@ Configurations for the Database Table Source
 
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 
-#. ``tableName``: This is the table from which you wish to import.
-
 #. ``user``: This is the username used to connect to the specified database. It is 
    required for databases that need authentication, optional for those that do not.
 
@@ -68,6 +66,9 @@ Configurations for the CDAP HBase Table Sink
 
 #. ``schema.row.field``: This is the field in the ``StructuredRecord`` input to this Sink
    that will be used as the ``rowKey`` in the HBase table.
+
+#. ``case.sensitive.row.field``: Indicates whether the ``schema.row.field`` is case sensitive.
+   It defaults to true.
 
 Creating an adapter using CDAP CLI
 ----------------------------------

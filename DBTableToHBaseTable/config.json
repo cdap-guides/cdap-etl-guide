@@ -7,7 +7,6 @@
         "importQuery": "select col1,col2,col3,col4 from my_table where col1 < 5",
         "countQuery": "select count(col1) from my_table where col1 < 5",
         "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-        "tableName": "my_table",
         "user": "postgres",
         "password": "",
         "jdbcPluginName": "postgres",

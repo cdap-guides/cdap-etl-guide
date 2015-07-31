@@ -27,18 +27,28 @@ be the ``id`` field of the Record emitted by the Twitter Source.
 For selecting the Source, we use the "source" property. The Twitter Source expects four properties 
 (OAuth credentials for Twitter):
 
-- ``AccessToken``
-- ``AccessTokenSecret``
-- ``ConsumerKey``
-- ``ConsumerSecret``
+#. ``AccessToken``
+#. ``AccessTokenSecret``
+#. ``ConsumerKey``
+#. ``ConsumerSecret``
 
 Sink
 ----
 
-Similarly, for selecting the Sink, we use the "sink" property. The Table Sink expects two properties:
+Similarly, for selecting the Sink, we use the "sink" property. The Table Sink expects these properties:
 
-- ``name``: Name of the Table Dataset.
-- ``schema.row.field``: The field which is used as the row key in the Table.
+Configurations for the Table Sink
+---------------------------------
+
+#. ``name``: This is the name of the HBase table to use as a sink.
+
+#. ``schema``: This is the JSON representation of the HBase Table's schema.
+
+#. ``schema.row.field``: This is the field in the ``StructuredRecord`` input to this Sink
+   that will be used as the ``rowKey`` in the HBase table.
+
+#. ``case.sensitive.row.field``: Indicates whether the ``schema.row.field`` is case sensitive.
+   It defaults to true.
 
 Since we don't use any transforms in this Adapter, we leave that as an empty array.
 
@@ -59,8 +69,12 @@ visit `Twitter <https://dev.twitter.com>`__ for more information on how to obtai
   Successfully started adapter 'tweetAdapter'
 
 
-You can verify that the data is being written to the Table by viewing the contents of the Table, 
-``tweetTable``, using the HBase shell.
+You can verify that the data is being written to the HBase by viewing the contents of the Dataset, metrics, by executing the following CLI command:
+
+::
+
+  cdap> execute 'select * from dataset_tweetTable'
+
 
 You have now successfully created an Adapter that retrieves Tweet data from Twitter and writes to an HBase Table.
 
