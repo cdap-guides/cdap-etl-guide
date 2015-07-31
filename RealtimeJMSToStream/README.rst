@@ -30,8 +30,8 @@ This is so the adapter will know of it and load it as part of the plugin class l
 
 The jar and the JSON counterpart files should be put in the ``templates/plugins/ETLRealtime`` directory.
 
-There are additional jars that should be copied into ``templates/plugins/ETLRealtime/lib``	 directory. These jars will be available as part of combined 
-class loaders for all realtime plugins so need to copy jar containing JMS specifications API, for example 
+There are additional jars that should be copied into ``templates/plugins/ETLRealtime/lib`` directory. These jars will be available as part of combined 
+class loaders for all realtime plugins. For Apache ActiveMQ, for example, we need to copy jar containing JMS specifications API. 
 
 Available Properties for JMS Source
 ===================================
