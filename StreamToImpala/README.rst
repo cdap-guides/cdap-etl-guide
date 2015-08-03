@@ -2,7 +2,7 @@ Batch CDAP Stream To Impala Adapter Configuration
 =================================================
 
 The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and persists it to a Sink.
-In this example, we will read events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
+In this example, we will read events from a Stream in batch and use a Time Partitioned File Set (TPFS) Sink to make the data queryable by Impala.
 
 The config.json contains a sample Adapter configuration that you can use to accomplish the above task. Our sample Adapter uses the following components:
 
@@ -23,6 +23,31 @@ First, load some trade events to be processed by our Adapter::
 
   cdap> send stream trades 'GOOG,528.48,10'
   Successfully sent stream event to stream 'trades'
+
+  
+Configurations for the Stream Source
+------------------------------------
+
+#. ``name``: Name of the Stream
+
+#. ``duration``: Size of the time window worth of data to read
+
+#. ``delay``: Optional delay in event data to be read
+
+#. ``format``: Optional Stream Format - CSV, CLF etc.
+
+#. ``schema``: Optional Schema for the stream data
+
+
+Configurations for TPFS Avro Sink
+---------------------------------
+
+#. ``name``: Name of the TPFS Dataset
+
+#. ``basePath``: Optional base path for the Dataset. Defaults to the dataset name.
+
+#. ``schema``: Schema for the data
+   
 
 Then you can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach)::
 
