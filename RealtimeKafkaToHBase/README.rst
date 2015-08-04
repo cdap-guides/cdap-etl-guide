@@ -25,7 +25,7 @@ Configurations for the Kafka Source
 
 #. ``kafka.partitions``: Number of topic partitions
 
-#. ``kafka.default.offset``: Offset for the partition. Default va
+#. ``kafka.default.offset``: Offset for the partition. Default values is -2 (Earliest Time).
 
 #. ``format``: Optional field to provide a format of the Kafka message
 
