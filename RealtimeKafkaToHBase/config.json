@@ -4,16 +4,20 @@
     "source": {
       "name": "Kafka",
       "properties": {
-        "kafka.partitions": 10,
-        "kafka.topic": "metrics",
-        "kafka.zookeeper": "localhost:2181/cdap/kafka"
+        "format": "csv",
+        "kafka.brokers": "",
+        "kafka.partitions": 2,
+        "kafka.topic": "myTopic",
+        "kafka.zookeeper": "locahost:2181",
+        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"int\"}]}"
       }
     },
     "sink": {
       "name": "Table",
       "properties": {
-        "name": "metrics",
-        "schema.row.field": "message"
+        "name": "output",
+        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"id\",\"type\":\"int\"}]}",
+        "schema.row.field": "id"
       }
     },
     "transforms": []
