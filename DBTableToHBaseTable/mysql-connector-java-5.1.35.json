@@ -1,8 +1,11 @@
-[
-  {
-    "name": "mysql",
-    "type": "jdbc",
-    "description": "MYSQL JDBC external plugin",
-    "className": "com.mysql.jdbc.Driver"
-  }
-]
+{
+  "parents" : [ "cdap-etl-batch[0,100]" ],
+  "plugins" : [
+    {
+      "name": "mysql",
+      "type": "jdbc",
+      "description": "MYSQL JDBC external plugin",
+      "className": "com.mysql.jdbc.Driver"
+    }
+  ]
+}
