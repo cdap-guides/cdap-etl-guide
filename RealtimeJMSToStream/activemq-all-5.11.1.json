@@ -1,8 +1,11 @@
-[
-  {
-    "type" : "JMSProvider",
-    "name" : "java.naming.factory.initial",
-    "description" : "JMS Provider for ActiveMQ 5.11.1 ConnectionFactory",
-    "className" : "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-  }
-]
+{
+  "parents" : [ "cdap-etl-batch[0,100]" ],
+  "plugins" : [
+    {
+      "type" : "JMSProvider",
+      "name" : "java.naming.factory.initial",
+      "description" : "JMS Provider for ActiveMQ 5.11.1 ConnectionFactory",
+      "className" : "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+    }
+  ]
+}

@@ -1,8 +1,11 @@
-[
-  {
-    "name": "postgres",
-    "type": "jdbc",
-    "description": "Postgresql External JDBC Plugin",
-    "className": "org.postgresql.Driver"
-  }
-]
+{
+  "parents" : [ "cdap-etl-batch[0,100]" ],
+  "plugins" : [
+    {
+      "name": "postgres",
+      "type": "jdbc",
+      "description": "Postgresql External JDBC Plugin",
+      "className": "org.postgresql.Driver"
+    }
+  ]
+}
