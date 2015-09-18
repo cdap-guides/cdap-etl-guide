@@ -1,11 +1,13 @@
-Realtime Twitter To HBase Application Configuration
-===================================================
+====================================================
+Real-time Twitter To HBase Application Configuration
+====================================================
 
 Introduction
 ------------
 
-Let's say we want to fetch Tweets from Twitter in Realtime and persist them in an HBase Table. 
-The cdap-etl-realtime system artifact can be used to create an Application that reads from a Realtime Source and persists it to a Realtime Sink. 
+Let's say we want to fetch Tweets from Twitter in real time and persist them in an HBase Table. 
+The ``cdap-etl-realtime`` system artifact can be used to create an Application that reads from a real-time Source 
+and persists it to a real-time Sink. 
 In this example, we will read messages from Twitter and use a TableSink to write the Tweets to HBase.
 
 
