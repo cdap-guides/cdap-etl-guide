@@ -7,10 +7,10 @@ that reads from a Batch Source and persists it to a Sink.
 In this example, we will read an entire DB table in batch and use a
 TableSink to write the database table's rows to HBase.
 
-The config.json contains a sample Application configuration that you can use to accomplish the
+The ``config.json`` contains a sample Application configuration that you can use to accomplish the
 above task. Our sample Application uses these components:
 
-- ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
+- The ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
 - Database source, to read data from the Database table 
 - Table sink, to write the rows from the Database table to an HBase table
 - A jar file containing the JDBC driver for your database. Along with this, you also need 
