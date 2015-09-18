@@ -1,15 +1,16 @@
-==============================================================
-Batch Database Table To CDAP HBase Table Adapter Configuration
-==============================================================
+==================================================================
+Batch Database Table To CDAP HBase Table Application Configuration
+==================================================================
 
-The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and
-persists it to a Sink. In this example, we will read an entire DB table in batch and use a
+The built-in ``cdap-etl-batch`` system artifact can be used to create an ETL Application
+that reads from a Batch Source and persists it to a Sink.
+In this example, we will read an entire DB table in batch and use a
 TableSink to write the database table's rows to HBase.
 
-The config.json contains a sample Adapter configuration that you can use to accomplish the
-above task. Our sample Adapter uses these components:
+The ``config.json`` contains a sample Application configuration that you can use to accomplish the
+above task. Our sample Application uses these components:
 
-- ETLBatch Application Template, since we want to perform ETL in batch
+- The ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
 - Database source, to read data from the Database table 
 - Table sink, to write the rows from the Database table to an HBase table
 - A jar file containing the JDBC driver for your database. Along with this, you also need 
@@ -17,11 +18,11 @@ above task. Our sample Adapter uses these components:
   the same name as the jar file (with only the extension changed to '.json'). See
   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
 
-You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a
+You can create and start the Application by using the CDAP CLI (or you can use the UI for a
 more visual approach).
 
-Note: You need to fill in the following configurations in a file such as config.json
-before creating the Adapter.
+Note: You need to fill in the following configurations in a file such as ``config.json``
+before creating the Application.
 
 Configurations for the Database Table Source
 --------------------------------------------
@@ -69,16 +70,16 @@ Configurations for the CDAP HBase Table Sink
 #. ``schema.row.field``: This is the field in the ``StructuredRecord`` input to this Sink
    that will be used as the ``rowKey`` in the HBase table.
 
-Creating an adapter using CDAP CLI
-----------------------------------
+Creating an ETL Application using CDAP CLI
+------------------------------------------
 
 ::
 
-  cdap> create adapter dbIngest DBTableToHBaseTable/config.json
-  Successfully created adapter 'dbIngest'
+  cdap> create app dbIngest cdap-etl-batch <version> system DBTableToHBaseTable/config.json
+  Successfully created application
 
-  cdap> start adapter dbIngest
-  Successfully started adapter 'dbIngest'
+  cdap> start workflow dbIngest.ETLWorkflowadapter
+  Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
 
 To verify that the data has been written to the HBase Table execute the following CDAP CLI
 command::
@@ -88,13 +89,10 @@ command::
 You have now successfully created an Adapter that reads from a Database Table and writes
 to a CDAP HBase Table.
 
-To stop and delete the Adapter execute the following commands using the CDAP CLI::
+To delete the Application execute the following command using the CDAP CLI::
 
-  cdap> stop adapter dbIngest
-  Successfully stopped adapter 'dbIngest'
-
-  cdap> delete adapter dbIngest
-  Successfully deleted adapter 'dbIngest'
+  cdap> delete app dbIngest
+  Successfully deleted application 'dbIngest'
 
 
 Share and Discuss!

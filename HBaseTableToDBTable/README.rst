@@ -1,15 +1,15 @@
-==============================================================
-Batch CDAP HBase Table To Database Table Adapter Configuration
-==============================================================
+==================================================================
+Batch CDAP HBase Table To Database Table Application Configuration
+==================================================================
 
-The ETL Batch Template can be used to create an Adapter that reads from a Batch Source and persists it to a Sink.
-In this example, we will read an entire HBase table in batch mode and use a Database Sink to write the HBase 
-table's rows to a database.
+The cdap-etl-batch system artifact can be used to create an ETL Application that reads from a Batch Source
+and persists it to a Sink. In this example, we will read an entire HBase table in batch mode and use a
+Database Sink to write the HBase table's rows to a database.
 
-The config.json contains a sample Adapter configuration that you can use to accomplish the above task. 
-Our sample Adapter uses these components:
+The ``config.json`` contains a sample Application configuration that you can use to accomplish the above task. 
+Our sample Application uses these components:
 
-- ETLBatch Application Template, since we want to perform ETL in batch
+- The ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
 - Table source, to read data from the HBase table 
 - Database sink, to write the data from the HBase table to a database table
 - A jar file containing the JDBC driver for your database. Along with this, you also need a JSON file 
@@ -17,9 +17,9 @@ Our sample Adapter uses these components:
   (with only the extension changed to '.json'). See ``mysql-connector-java-5.1.35.json`` and 
   ``postgresql-9.4.json`` as examples.
 
-You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach).
+You can create and start the Application by using the CDAP CLI (or you can use the UI for a more visual approach).
 
-Note: You need to fill in the following configurations in a file such as config.json before creating the Adapter.
+Note: You need to fill in the following configurations in a file such as ``config.json`` before creating the Application.
 
 Configurations for the CDAP HBase Table Source
 ----------------------------------------------
@@ -49,16 +49,16 @@ Configurations for the Database Table Sink
    in the files ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the CDAP 
    documentation on external plugins for more details.
 
-Creating an adapter using CDAP CLI
-----------------------------------
+Creating an ETL Application using CDAP CLI
+------------------------------------------
 
 ::
 
-  cdap> create adapter dbExport HBaseTableToDBTable/config.json
-  Successfully created adapter 'dbExport'
+  cdap> create app dbExport cdap-etl-batch <version> system HBaseTableToDBTable/config.json
+  Successfully created application
 
-  cdap> start adapter dbExport
-  Successfully started adapter 'dbExport'
+  cdap> start workflow dbExport.ETLWorkflow
+  Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
 
 To verify that the data has been written to the Database Table execute the following SQL command on your Database::
 
@@ -66,14 +66,10 @@ To verify that the data has been written to the Database Table execute the follo
 
 You have now successfully created an Adapter that reads from an HBase Table and writes to a Database Table.
 
-To stop and delete the Adapter execute the following commands using the CDAP CLI::
+To delete the Application execute the following commands using the CDAP CLI::
 
-  cdap> stop adapter dbExport
-  Successfully stopped adapter 'dbExport'
-
-  cdap> delete adapter dbExport
-  Successfully deleted adapter 'dbExport'
-
+  cdap> delete app dbExport
+  Successfully deleted application 'dbExport'
 
 Share and Discuss!
 ==================
