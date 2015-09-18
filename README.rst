@@ -33,18 +33,18 @@ What You Will Create
 .. |Real-timeKafkaToHBase| replace:: **Real-time Kafka To HBase:**
 .. _Real-timeKafkaToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase
 
-- |Real-timeKafkaToHBase|_ With this Application, we will fetch messages from Kafka in real-time and write to an HBase Table.
+- |Real-timeKafkaToHBase|_ With this Application, we will fetch messages from Kafka in real time and write to an HBase Table.
 
 
 .. |Real-timeTwitterToHBase| replace:: **Real-time Twitter To HBase:**
 .. _Real-timeTwitterToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase
 
-- |Real-timeTwitterToHBase|_ In this Application, we will read Tweets from Twitter in real-time and write to an HBase Table.
+- |Real-timeTwitterToHBase|_ In this Application, we will read Tweets from Twitter in real time and write to an HBase Table.
 
-.. |RealtimeJMSToStream| replace:: **Realtime JMS To Stream:**
+.. |RealtimeJMSToStream| replace:: **Real-time JMS To Stream:**
 .. _RealtimeJMSToStream: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeJMSToStream
 
-- |RealtimeJMSToStream|_ In this Application, we will read messages from a JMS producer in Realtime and write to a CDAP Stream.
+- |RealtimeJMSToStream|_ In this Application, we will read messages from a JMS producer in real time and write to a CDAP Stream.
 
 What You Will Need
 ==================
