@@ -2,7 +2,7 @@
 Batch Database Table To CDAP HBase Table Application Configuration
 ==================================================================
 
-The built-in cdap-etl-batch system artifact can be used to create an ETL Application
+The built-in ``cdap-etl-batch`` system artifact can be used to create an ETL Application
 that reads from a Batch Source and persists it to a Sink.
 In this example, we will read an entire DB table in batch and use a
 TableSink to write the database table's rows to HBase.
@@ -10,7 +10,7 @@ TableSink to write the database table's rows to HBase.
 The config.json contains a sample Application configuration that you can use to accomplish the
 above task. Our sample Application uses these components:
 
-- cdap-etl-batch system artifact, since we want to perform ETL in batch
+- ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
 - Database source, to read data from the Database table 
 - Table sink, to write the rows from the Database table to an HBase table
 - A jar file containing the JDBC driver for your database. Along with this, you also need 
@@ -21,7 +21,7 @@ above task. Our sample Application uses these components:
 You can create and start the Application by using the CDAP CLI (or you can use the UI for a
 more visual approach).
 
-Note: You need to fill in the following configurations in a file such as config.json
+Note: You need to fill in the following configurations in a file such as ``config.json``
 before creating the Application.
 
 Configurations for the Database Table Source
