@@ -1,20 +1,18 @@
-Realtime Twitter To HBase Adapter Configuration
-===============================================
+Realtime Twitter To HBase Application Configuration
+===================================================
 
 Introduction
 ------------
 
 Let's say we want to fetch Tweets from Twitter in Realtime and persist them in an HBase Table. 
-ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and persists it to a Realtime Sink. 
+The cdap-etl-realtime system artifact can be used to create an Application that reads from a Realtime Source and persists it to a Realtime Sink. 
 In this example, we will read messages from Twitter and use a TableSink to write the Tweets to HBase.
 
 
 Configuration
 -------------
 
-The ``config.json`` contains a sample Adapter configuration that you can use to accomplish the above task. 
-We choose the ETL Realtime Application Template since we want to create a Realtime Adapter. 
-We set the Application Template name using the "template" property.
+The ``config.json`` contains a sample Application configuration that you can use to accomplish the above task. 
 
 Source
 ------
@@ -40,41 +38,41 @@ Similarly, for selecting the Sink, we use the "sink" property. The Table Sink ex
 - ``name``: Name of the Table Dataset.
 - ``schema.row.field``: The field which is used as the row key in the Table.
 
-Since we don't use any transforms in this Adapter, we leave that as an empty array.
+Since we don't use any transforms in this Application, we leave that as an empty array.
 
 
 Creating and Running
 --------------------
 
-You can create and start the Adapter by using the CDAP CLI (or the UI, for a more visual approach).
+You can create and start the Application by using the CDAP CLI (or the UI, for a more visual approach).
 Note: You need to fill in the OAuth credentials in ``config.json`` before creating the Adapter. You can 
 visit `Twitter <https://dev.twitter.com>`__ for more information on how to obtain OAuth credentials for the Twitter Source.
 
 ::
 
-  cdap> create adapter tweetAdapter RealtimeTwitterToHBase/config.json
-  Successfully created adapter 'tweetAdapter'
+  cdap> create app tweetApp cdap-etl-realtime <version> system RealtimeTwitterToHBase/config.json
+  Successfully created application
 
-  cdap> start adapter tweetAdapter
-  Successfully started adapter 'tweetAdapter'
+  cdap> start worker tweetApp.ETLWorker
+  Successfully started worker 'ETLWorker' of application 'tweetAdapter' with stored runtime arguments '{}'
 
 
 You can verify that the data is being written to the Table by viewing the contents of the Table, 
 ``tweetTable``, using the HBase shell.
 
-You have now successfully created an Adapter that retrieves Tweet data from Twitter and writes to an HBase Table.
+You have now successfully created an Application that retrieves Tweet data from Twitter and writes to an HBase Table.
 
 
 Stopping and Deleting
 ---------------------
 
-You can stop and delete the Adapter using the CDAP CLI.
+You can stop and delete the Application using the CDAP CLI.
 
 ::
 
-  cdap> stop adapter tweetAdapter
-  Successfully stopped adapter 'tweetAdapter'
+  cdap> stop worker tweetApp.ETLWorker
+  Successfully stopped worker 'ETLWorker' of application 'tweetApp'
 
-  cdap> delete adapter tweetAdapter
-  Successfully deleted adapter 'tweetAdapter'
+  cdap> delete adapter tweetApp
+  Successfully deleted application 'tweetAdapter'
 

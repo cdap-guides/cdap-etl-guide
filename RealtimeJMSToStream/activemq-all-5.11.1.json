@@ -1,5 +1,5 @@
 {
-  "parents" : [ "cdap-etl-batch[0,100]" ],
+  "parents" : [ "cdap-etl-realtime[0,100]" ],
   "plugins" : [
     {
       "type" : "JMSProvider",

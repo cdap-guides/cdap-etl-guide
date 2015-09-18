@@ -1,5 +1,4 @@
 {
-  "template": "ETLRealtime",
   "config": {
     "source": {
       "name": "Kafka",
@@ -9,13 +8,15 @@
         "kafka.zookeeper": "localhost:2181/cdap/kafka"
       }
     },
-    "sink": {
-      "name": "Table",
-      "properties": {
-        "name": "metrics",
-        "schema.row.field": "message"
+    "sinks": [
+      {
+        "name": "Table",
+        "properties": {
+          "name": "metrics",
+          "schema.row.field": "message"
+        }
       }
-    },
+    ],
     "transforms": []
   }
 }

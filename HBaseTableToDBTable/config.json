@@ -1,18 +1,20 @@
 {
   "config": {
     "schedule": "*/5 * * * *",
-    "sink": {
-      "name": "Database",
-      "properties": {
-        "columns": "col1,col2,col3,col4",
-        "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-        "tableName": "dest_table",
-        "user": "postgres",
-        "password": "",
-        "jdbcPluginName": "postgres",
-        "jdbcPluginType": "jdbc"
+    "sinks": [
+      {
+        "name": "Database",
+        "properties": {
+          "columns": "col1,col2,col3,col4",
+          "connectionString": "jdbc:postgresql://localhost:5432/testdb",
+          "tableName": "dest_table",
+          "user": "postgres",
+          "password": "",
+          "jdbcPluginName": "postgres",
+          "jdbcPluginType": "jdbc"
+        }
       }
-    },
+    ],
     "source": {
       "name": "Table",
       "properties": {
@@ -23,7 +25,5 @@
     },
     "transforms": [
     ]
-  },
-  "description": "ETL using a CDAP HBase Table as source and a Database Table as sink",
-  "template": "ETLBatch"
+  }
 }

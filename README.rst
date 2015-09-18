@@ -1,12 +1,13 @@
-===========================================================
-Creating ETL Pipelines using CDAP ETL Application Templates
-===========================================================
+=====================================================
+Creating ETL Applications using CDAP System Artifacts
+=====================================================
 
-Using CDAP ETL Application Templates, you can create ETL Pipelines (ETL Adapters) with just a JSON configuration file. 
-CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/application-templates/index.html>`__
-which can be used to create Batch ETL and Real-time ETL Adapters right out of the box.
+Using the built-in cdap-etl-batch and cdap-etl-realtime system artifacts,
+you can create ETL Pipelines (ETL Applications) with just a JSON configuration file. 
+CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/included-applications/index.html>`__
+which can be used to create Batch ETL Applications and Real-time ETL Applications right out of the box.
 
-Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/application-templates/etl/custom.html>`__.
+Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/included-applictionas/etl/custom.html>`__.
 
 What You Will Create
 ====================
@@ -14,36 +15,36 @@ What You Will Create
 .. |DBTableToHBaseTable| replace:: **Batch Database Table to CDAP HBase Table:**
 .. _DBTableToHBaseTable: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/DBTableToHBaseTable
 
-- |DBTableToHBaseTable|_ In this Adapter, we will export the contents of a Database Table to a CDAP HBase table in Batch.
+- |DBTableToHBaseTable|_ In this Application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
 
 
 .. |HBaseTableToDBTable| replace:: **Batch CDAP HBase Table to Database Table:**
 .. _HBaseTableToDBTable: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/HBaseTableToDBTable
 
-- |HBaseTableToDBTable|_ This Adapter exports the contents of a CDAP HBase Table to a Database Table in Batch.
+- |HBaseTableToDBTable|_ This Application exports the contents of a CDAP HBase Table to a Database Table in Batch.
 
 
 .. |StreamToImpala| replace:: **Batch CDAP Stream To Impala:**
 .. _StreamToImpala: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/StreamToImpala
 
-- |StreamToImpala|_ This Adapter makes the events ingested in a CDAP Stream queryable through Impala.
+- |StreamToImpala|_ This Application makes the events ingested in a CDAP Stream queryable through Impala.
 
 
 .. |Real-timeKafkaToHBase| replace:: **Real-time Kafka To HBase:**
 .. _Real-timeKafkaToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeKafkaToHBase
 
-- |Real-timeKafkaToHBase|_ With this Adapter, we will fetch messages from Kafka in real-time and write to an HBase Table.
+- |Real-timeKafkaToHBase|_ With this Application, we will fetch messages from Kafka in real-time and write to an HBase Table.
 
 
 .. |Real-timeTwitterToHBase| replace:: **Real-time Twitter To HBase:**
 .. _Real-timeTwitterToHBase: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeTwitterToHBase
 
-- |Real-timeTwitterToHBase|_ In this Adapter, we will read Tweets from Twitter in real-time and write to an HBase Table.
+- |Real-timeTwitterToHBase|_ In this Application, we will read Tweets from Twitter in real-time and write to an HBase Table.
 
 .. |RealtimeJMSToStream| replace:: **Realtime JMS To Stream:**
 .. _RealtimeJMSToStream: https://github.com/cdap-guides/cdap-etl-adapter-guide/tree/develop/RealtimeJMSToStream
 
-- |RealtimeJMSToStream|_ In this Adapter, we will read messages from a JMS producer in Realtime and write to a CDAP Stream.
+- |RealtimeJMSToStream|_ In this Application, we will read messages from a JMS producer in Realtime and write to a CDAP Stream.
 
 What You Will Need
 ==================
@@ -54,7 +55,7 @@ What You Will Need
 Let's Begin!
 ============
 
-For these guides, we will use the CDAP CLI to create and manage Adapters. The CLI commands assume that the ``cdap-cli.sh`` script is available on your PATH. 
+For these guides, we will use the CDAP CLI to create and manage ETL Applications. The CLI commands assume that the ``cdap-cli.sh`` script is available on your PATH. 
 If this is not the case, please add it::
 
   $ export PATH=$PATH:<CDAP home>/bin
@@ -63,7 +64,7 @@ If you haven't already started a standalone CDAP installation, start it with the
 
   $ cdap.sh start
 
-Now navigate to the Adapter that you want to create and you will find further instructions on how to create that specific Adapter.
+Now navigate to the ETL Application that you want to create and you will find further instructions on how to create that specific ETL Application.
 
 Share and Discuss!
 ==================

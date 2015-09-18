@@ -1,20 +1,20 @@
-===============================================================================
-Realtime Java Message Service (JMS) Source To Stream Sink Adapter Configuration
-===============================================================================
+===================================================================================
+Realtime Java Message Service (JMS) Source To Stream Sink Application Configuration
+===================================================================================
 
-The ETL Realtime Template can be used to create an Adapter that reads from a Realtime Source and pass it to a Sink to be processed further.
+The cdap-etl-realtime system artifact can be used to create an Application that reads from a Realtime Source and pass it to a Sink to be processed further.
 
 In this example, we will poll messages from a Java Message Service (JMS) source in realtime and use a Stream Sink to write the messages to a CDAP Stream.
 
-The config.json contains a sample Adapter configuration that you can use to accomplish this task. 
+The config.json contains a sample Application configuration that you can use to accomplish this task. 
 
-Our sample Adapter uses these components:
+Our sample Application uses these components:
 
-- ETLRealtime Application Template, since we want to perform ETL in realtime
+- cdap-etl-realtime system artifact, since we want to perform ETL in realtime
 - JMS source, using the implementation of JMS from Apache ActiveMQ, version 5.11.1
 - Stream sink to hold the incoming messages to be processed by a downstream program such as a CDAP Flow
 
-You can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach).
+You can create and start the Application by using the CDAP CLI (or you can use the UI for a more visual approach).
 
 The realtime JMS source uses a generic JMS interface to communicate with a JMS broker, so the source requires that the JMS interfaces 
 be implemented, in order to function as a separate Adapter plugin.
