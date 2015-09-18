@@ -15,13 +15,13 @@ First, load some trade events to be processed by our Adapter::
   cdap> create stream trades
   Successfully created stream 'trades'
 
-  cdap> send stream trades 'NFLX,441.07,50'
+  cdap> send stream trades 'NFLX|50|441.07'
   Successfully sent stream event to stream 'trades'
 
-  cdap> send stream trades 'AAPL,118.63,100'
+  cdap> send stream trades 'AAPL|100|118.63'
   Successfully sent stream event to stream 'trades'
 
-  cdap> send stream trades 'GOOG,528.48,10'
+  cdap> send stream trades 'GOOG|10|528.48'
   Successfully sent stream event to stream 'trades'
 
 Then you can create and start the Adapter by using the CDAP CLI (or you can use the UI for a more visual approach)::
