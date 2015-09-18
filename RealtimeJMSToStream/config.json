@@ -1,5 +1,4 @@
 {  
-  "template":"ETLRealtime",
   "config":{  
     "instances":"1",
     "source":{  
@@ -12,13 +11,15 @@
         "topic.cdap.testtopic":"cdap.testtopic"
       }
     },
-    "sink":{  
-      "name":"Stream",
-      "properties":{  
-        "name":"jmsStream",
-        "body.field":"message"
+    "sinks": [
+      {  
+        "name":"Stream",
+        "properties":{  
+          "name":"jmsStream",
+          "body.field":"message"
+        }
       }
-    },
+    ],
     "transforms":[
     ]
   }

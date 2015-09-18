@@ -14,17 +14,17 @@
         "jdbcPluginType": "jdbc"
       }
     },
-    "sink": {
-      "name": "Table",
-      "properties": {
-        "name": "hbase_postgres_table",
-		"schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
-		"schema.row.field": "col1"
+    "sinks": [
+      {
+        "name": "Table",
+        "properties": {
+          "name": "hbase_postgres_table",
+          "schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
+          "schema.row.field": "col1"
+        }
       }
-    },
+    ],
     "transforms": [
     ]
-  },
-  "description": "ETL using a Database table as source and a CDAP HBase Table as sink",
-  "template": "ETLBatch"
+  }
 }
