@@ -13,8 +13,7 @@ Our sample Application uses these components:
 - Table source, to read data from the HBase table 
 - Database sink, to write the data from the HBase table to a database table
 - A jar file containing the JDBC driver for your database. Along with this, you also need a JSON file 
-  that describes the JDBC driver as an external plugin. This file should have the same name as the jar file 
-  (with only the extension changed to '.json'). See ``mysql-connector-java-5.1.35.json`` and 
+  that describes the JDBC driver as an external plugin. See ``mysql-connector-java-5.1.35.json`` and 
   ``postgresql-9.4.json`` as examples.
 
 You can create and start the Application by using the CDAP CLI (or you can use the UI for a more visual approach).
@@ -51,20 +50,33 @@ Configurations for the Database Table Sink
 
 Creating an ETL Application using CDAP CLI
 ------------------------------------------
+Add the JDBC driver as a plugin artifact available to ``cdap-etl-batch``::
 
-::
+  cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
+
+For example, if you want to use postgresql::
+
+  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file HBaseTableToDBTable/postgresql-9.4.json
+  Successfully added artifact with name 'postgresql'
+  
+Create an ETL Application named ``dbExport`` (replace <version> with your CDAP version)::
 
   cdap> create app dbExport cdap-etl-batch <version> system HBaseTableToDBTable/config.json
   Successfully created application
 
   cdap> start workflow dbExport.ETLWorkflow
-  Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
+  Successfully started workflow 'ETLWorkflow' of application 'dbExport' with stored runtime arguments '{}'
+
+This will run the workflow once. To schedule the workflow to run periodically::
+
+  cdap> resume schedule dbExport.etlWorkflow
+  Successfully resumed schedule 'etlWorkflow' in app 'dbExport'
 
 To verify that the data has been written to the Database Table execute the following SQL command on your Database::
 
   select * from dest_db_table
 
-You have now successfully created an Adapter that reads from an HBase Table and writes to a Database Table.
+You have now successfully created an Application that reads from an HBase Table and writes to a Database Table.
 
 To delete the Application execute the following commands using the CDAP CLI::
 

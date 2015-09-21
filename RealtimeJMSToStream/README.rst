@@ -20,7 +20,7 @@ You can create and start the Application by using the CDAP CLI (or you can use t
 
 The real time JMS source uses a generic JMS interface to communicate with a JMS broker, 
 so the source requires that the JMS interfaces 
-be implemented, in order to function as a separate Adapter plugin.
+be implemented, in order to function as a separate plugin.
 
 One important thing to remember you need to use the identical version of JMS for both the client 
 and the target server to ensure 
@@ -32,7 +32,7 @@ For Apache ActiveMQ, we will be using the ``activemq-all-5.11.1.jar`` file that 
 
 For each additional plugin JAR, there should be an accompanying JSON file, with the same name 
 as the JAR name but with the ``.json`` extension, to describe the plugin. 
-This is so the adapter will know of it and load it as part of the plugin class loader.
+This is so the application will know of it and load it as part of the plugin class loader.
 
 The JAR and the JSON counterpart files should be put in the ``artifacts`` directory.
 
@@ -63,7 +63,7 @@ For example, the Apache ActiveMQ requires that the Topic or Queue name be set as
 or ``queue.<destination name>`` 
 property key names in order for the JNDI context to be resolved.
 
-The ``config.json`` file included shows the Adapter configuration file with sample values for the JMS source properties.
+The ``config.json`` file included shows the Application configuration file with sample values for the JMS source properties.
 
 The JMS APIs Implementation Plugin JSON Configuration File
 ===========================================================

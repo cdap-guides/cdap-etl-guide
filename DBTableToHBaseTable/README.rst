@@ -14,8 +14,7 @@ above task. Our sample Application uses these components:
 - Database source, to read data from the Database table 
 - Table sink, to write the rows from the Database table to an HBase table
 - A jar file containing the JDBC driver for your database. Along with this, you also need 
-  a JSON file that describes the JDBC driver as an external plugin. This file should have
-  the same name as the jar file (with only the extension changed to '.json'). See
+  a JSON file that describes the JDBC driver as an external plugin. See
   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
 
 You can create and start the Application by using the CDAP CLI (or you can use the UI for a
@@ -72,21 +71,34 @@ Configurations for the CDAP HBase Table Sink
 
 Creating an ETL Application using CDAP CLI
 ------------------------------------------
+Add the JDBC driver as a plugin artifact available to ``cdap-etl-batch``::
 
-::
+  cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
+
+For example, if you want to use postgresql::
+
+  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToHBaseTable/postgresql-9.4.json
+  Successfully added artifact with name 'postgresql'
+
+Create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version)::
 
   cdap> create app dbIngest cdap-etl-batch <version> system DBTableToHBaseTable/config.json
   Successfully created application
 
-  cdap> start workflow dbIngest.ETLWorkflowadapter
+  cdap> start workflow dbIngest.ETLWorkflow
   Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
+
+This will run the workflow once. To schedule the workflow to run periodically::
+
+  cdap> resume schedule dbIngest.etlWorkflow 
+  Successfully resumed schedule 'etlWorkflow' in app 'dbIngest'
 
 To verify that the data has been written to the HBase Table execute the following CDAP CLI
 command::
 
   cdap> execute 'select * from dataset_hbase_postgres_table'
 
-You have now successfully created an Adapter that reads from a Database Table and writes
+You have now successfully created an ETL Application that reads from a Database Table and writes
 to a CDAP HBase Table.
 
 To delete the Application execute the following command using the CDAP CLI::
