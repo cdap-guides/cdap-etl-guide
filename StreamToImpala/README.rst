@@ -39,8 +39,8 @@ This will run the workflow, which will spawn a MapReduce job that reads all even
 in the past ten minutes, writes each event to Avro-encoded files, and registers a new
 partition in the Hive Metastore. You can also schedule the workflow to run periodically::
 
-  cdap> resume schedule trades_conversion.ETLWorkflow 
-  Successfully resumed schedule 'ETLWorkflow' in app 'trades_conversion'
+  cdap> resume schedule trades_conversion.etlWorkflow 
+  Successfully resumed schedule 'etlWorkflow' in app 'trades_conversion'
 
 After the workflow has run, we can query the contents using Impala. On a
 cluster, use the Impala shell to connect to Impala::
