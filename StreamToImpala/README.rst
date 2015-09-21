@@ -32,12 +32,17 @@ Then you can create and start the Application by using the CDAP CLI (or you can 
   cdap> create app trades_conversion cdap-etl-batch <version> system StreamToImpala/config.json
   Successfully created application
 
-  cdap> start trades_conversion.ETLWorkflow
+  cdap> start workflow trades_conversion.ETLWorkflow
   Successfully started workflow 'ETLWorkflow' of application 'trades_conversion' with stored runtime arguments '{}'
 
 This will run the workflow, which will spawn a MapReduce job that reads all events added
 in the past ten minutes, writes each event to Avro-encoded files, and registers a new
-partition in the Hive Metastore. We can then query the contents using Impala. On a
+partition in the Hive Metastore. You can also schedule the workflow to run periodically::
+
+  cdap> resume schedule trades_conversion.etlWorkflow 
+  Successfully resumed schedule 'etlWorkflow' in app 'trades_conversion'
+
+After the workflow has run, we can query the contents using Impala. On a
 cluster, use the Impala shell to connect to Impala::
 
   $ impala-shell -i <impala-host>
