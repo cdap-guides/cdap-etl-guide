@@ -54,7 +54,7 @@ Add the JDBC driver as a plugin artifact available to ``cdap-etl-batch``::
 
   cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
 
-For example, if you want to use postgresql::
+For example, if you want to use PostgreSQL::
 
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file HBaseTableToDBTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
