@@ -47,16 +47,16 @@ Creating and Running
 --------------------
 
 You can create and start the Application by using the CDAP CLI (or the UI, for a more visual approach).
-Note: You need to fill in the OAuth credentials in ``config.json`` before creating the Adapter. You can 
+Note: You need to fill in the OAuth credentials in ``config.json`` before creating the Application. You can 
 visit `Twitter <https://dev.twitter.com>`__ for more information on how to obtain OAuth credentials for the Twitter Source.
 
-::
+Create an ETL Application named ``tweetApp`` (replace <version> with your CDAP version)::
 
   cdap> create app tweetApp cdap-etl-realtime <version> system RealtimeTwitterToHBase/config.json
   Successfully created application
 
   cdap> start worker tweetApp.ETLWorker
-  Successfully started worker 'ETLWorker' of application 'tweetAdapter' with stored runtime arguments '{}'
+  Successfully started worker 'ETLWorker' of application 'tweetApp' with stored runtime arguments '{}'
 
 
 You can verify that the data is being written to the Table by viewing the contents of the Table, 
@@ -68,13 +68,11 @@ You have now successfully created an Application that retrieves Tweet data from 
 Stopping and Deleting
 ---------------------
 
-You can stop and delete the Application using the CDAP CLI.
-
-::
+You can stop and delete the Application using the CDAP CLI::
 
   cdap> stop worker tweetApp.ETLWorker
   Successfully stopped worker 'ETLWorker' of application 'tweetApp'
 
-  cdap> delete adapter tweetApp
-  Successfully deleted application 'tweetAdapter'
+  cdap> delete app tweetApp
+  Successfully deleted application 'tweetApp'
 

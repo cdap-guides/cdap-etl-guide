@@ -18,7 +18,7 @@ You can create and start the Application by using the CDAP CLI (or you can use t
 Note: You need to fill in the ``kafka.zookeeper`` configuration in ``config.json`` before creating the Application.
 This is the connection string to your Kafka server in ZooKeeper.
 
-::
+Create an ETL Application named ``kafkaIngest`` (replace <version> with your CDAP version)::
 
   cdap> create app kafkaIngest cdap-etl-realtime <version> system RealtimeKafkaToHBase/config.json
   Successfully created application
@@ -27,9 +27,7 @@ This is the connection string to your Kafka server in ZooKeeper.
   Successfully started worker 'ETLWorker' of application 'kafkaIngest' with stored runtime arguments '{}'
 
 You can verify that the data is being written to the HBase by viewing the contents of the Dataset metrics, 
-by executing the following CLI command:
-
-::
+by executing the following CLI command::
 
   cdap> execute 'select * from dataset_metrics'
 
