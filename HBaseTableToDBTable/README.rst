@@ -67,14 +67,22 @@ Create an ETL Application named ``dbExport`` (replace <version> with your CDAP v
   cdap> start workflow dbExport.ETLWorkflow
   Successfully started workflow 'ETLWorkflow' of application 'dbExport' with stored runtime arguments '{}'
 
-This will run the workflow once. To schedule the workflow to run periodically::
+This will run the workflow once. Check on the workflow status and wait for it to finish::
 
-  cdap> resume schedule dbExport.etlWorkflow
-  Successfully resumed schedule 'etlWorkflow' in app 'dbExport'
+  cdap> get workflow status dbExport.ETLWorkflow
+  RUNNING
+
+  cdap> get workflow status dbExport.ETLWorkflow
+  STOPPED
 
 To verify that the data has been written to the Database Table execute the following SQL command on your Database::
 
-  select * from dest_db_table
+  select * from dest_table
+
+To schedule the workflow to run periodically::
+
+  cdap> resume schedule dbExport.etlWorkflow
+  Successfully resumed schedule 'etlWorkflow' in app 'dbExport'
 
 You have now successfully created an Application that reads from an HBase Table and writes to a Database Table.
 
