@@ -1,5 +1,5 @@
 {
-  "parents" : [ "system:cdap-etl-realtime[3.2.0,3.3.0)" ],
+  "parents" : [ "system:cdap-etl-realtime[3.2.0,4.0.0)" ],
   "plugins" : [
     {
       "type" : "JMSProvider",

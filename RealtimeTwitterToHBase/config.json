@@ -2,24 +2,32 @@
     "config": {
         "sinks": [
             {
-                "name": "Table",
-                "properties": {
-                    "name": "tweetTable",
-                    "schema.row.field": "id",
-                    "schema": "{\"type\":\"record\",\"name\":\"tweet\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}"
+                "name": "TableSink",
+                "plugin": {
+                    "name": "Table",
+                    "properties": {
+                        "name": "tweetTable",
+                        "schema.row.field": "id",
+                        "schema": "{\"type\":\"record\",\"name\":\"tweet\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}"
+                    }
                 }
             }
         ],
         "source": {
-            "name": "Twitter",
-            "properties": {
-                "AccessToken": "GetAccessTokenFromTwitter",
-                "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
-                "ConsumerKey": "GetConsumerKeyFromTwitter",
-                "ConsumerSecret": "GetConsumerSecretFromTwitter"
+            "name": "TwitterSource",
+            "plugin": {
+                "name": "Twitter",
+                "properties": {
+                    "AccessToken": "GetAccessTokenFromTwitter",
+                    "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
+                    "ConsumerKey": "GetConsumerKeyFromTwitter",
+                    "ConsumerSecret": "GetConsumerSecretFromTwitter"
+                }
             }
         },
-        "transforms": []
+        "transforms": [
+            { "from": "TwitterSource", "to": "TableSink" }
+        ]
     }
 }
 

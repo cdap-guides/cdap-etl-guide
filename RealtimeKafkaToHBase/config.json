@@ -1,22 +1,30 @@
 {
   "config": {
     "source": {
-      "name": "Kafka",
-      "properties": {
-        "kafka.partitions": "10",
-        "kafka.topic": "metrics",
-        "kafka.zookeeper": "localhost:2181/cdap/kafka"
+      "name": "KafkaSource",
+      "plugin": {
+        "name": "Kafka",
+        "properties": {
+          "kafka.partitions": "10",
+          "kafka.topic": "metrics",
+          "kafka.zookeeper": "localhost:2181/cdap/kafka"
+        }
       }
     },
     "sinks": [
       {
-        "name": "Table",
-        "properties": {
-          "name": "metrics",
-          "schema.row.field": "message"
+        "name": "TableSink",
+        "plugin": {
+          "name": "Table",
+          "properties": {
+            "name": "metrics",
+            "schema.row.field": "message"
+          }
         }
       }
     ],
-    "transforms": []
+    "connections": [
+      { "from": "KafkaSource", "to": "TableSink" }
+    ]
   }
 }
