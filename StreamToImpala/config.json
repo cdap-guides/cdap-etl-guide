@@ -2,29 +2,42 @@
   "config":{
     "schedule":"*/10 * * * *",
     "source":{
-      "name":"Stream",
-      "properties":{
-        "name":"trades",
-        "duration":"10m",
-        "format":"csv",
-        "schema":"{\"type\":\"record\",\"name\":\"event\",\"fields\":[{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
-        "format.setting.delimiter":"|"
+      "name": "StreamSource",
+      "plugin": {
+        "name":"Stream",
+        "properties":{
+          "name":"trades",
+          "duration":"10m",
+          "format":"csv",
+          "schema":"{\"type\":\"record\",\"name\":\"event\",\"fields\":[{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
+          "format.setting.delimiter":"|"
+        }
       }
     },
     "sinks": [
       {
-        "name":"TPFSAvro",
-        "properties":{
-          "schema":"{\"type\":\"record\",\"name\":\"streamEvent\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
-          "name":"trades_converted"
+        "name": "TPFSAvroSink",
+        "plugin": {
+          "name":"TPFSAvro",
+          "properties":{
+            "schema":"{\"type\":\"record\",\"name\":\"streamEvent\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
+            "name":"trades_converted"
+          }
         }
       }
     ],
-    "transforms":[
+    "transforms": [
       {
-        "name":"Projection",
-        "properties":{"drop":"headers"}
+        "name": "DropHeaders",
+        "plugin": {
+          "name":"Projection",
+          "properties":{"drop":"headers"}
+        }
       }
+    ],
+    "connections": [
+      { "from": "StreamSource", "to": "DropHeaders" },
+      { "from": "DropHeaders", "to": "TPFSAvroSink" }
     ]
   }
 }
