@@ -80,7 +80,8 @@ For example, if you want to use PostgreSQL::
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToHBaseTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
 
-Create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version)::
+Create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version).
+You should edit the config.json file to use the right SQL queries and credentials for your database::
 
   cdap> create app dbIngest cdap-etl-batch <version> system DBTableToHBaseTable/config.json
   Successfully created application
@@ -88,15 +89,23 @@ Create an ETL Application named ``dbIngest`` (replace <version> with your CDAP v
   cdap> start workflow dbIngest.ETLWorkflow
   Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
 
-This will run the workflow once. To schedule the workflow to run periodically::
+This will run the workflow once. Check on the workflow status and wait for it to finish::
 
-  cdap> resume schedule dbIngest.etlWorkflow 
-  Successfully resumed schedule 'etlWorkflow' in app 'dbIngest'
+  cdap> get workflow status dbIngest.ETLWorkflow
+  RUNNING
+
+  cdap> get workflow status dbIngest.ETLWorkflow
+  STOPPED
 
 To verify that the data has been written to the HBase Table execute the following CDAP CLI
 command::
 
   cdap> execute 'select * from dataset_hbase_postgres_table'
+
+To schedule the workflow to run periodically::
+
+  cdap> resume schedule dbIngest.etlWorkflow 
+  Successfully resumed schedule 'etlWorkflow' in app 'dbIngest'
 
 You have now successfully created an ETL Application that reads from a Database Table and writes
 to a CDAP HBase Table.
