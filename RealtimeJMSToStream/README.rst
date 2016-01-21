@@ -66,7 +66,7 @@ property key names in order for the JNDI context to be resolved.
 The ``config.json`` file included shows the Application configuration file with sample values for the JMS source properties.
 
 The JMS APIs Implementation Plugin JSON Configuration File
-===========================================================
+==========================================================
 
 As mentioned above, the JMS source requires an additional plugin that actually performs the 
 execution of polling messages from the target server.
