@@ -3,10 +3,10 @@ Creating ETL Pipelines using CDAP ETL Application Templates
 ===========================================================
 
 Using CDAP ETL Application Templates, you can create ETL Pipelines (ETL Adapters) with just a JSON configuration file. 
-CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/application-templates/index.html>`__
+CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/3.0.6/en/application-templates/index.html>`__
 which can be used to create Batch ETL and Real-time ETL Adapters right out of the box.
 
-Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/application-templates/etl/custom.html>`__.
+Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/3.0.6/en/application-templates/etl/custom.html>`__.
 
 What You Will Create
 ====================
