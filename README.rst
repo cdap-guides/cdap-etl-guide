@@ -4,10 +4,10 @@ Creating ETL Applications using CDAP System Artifacts
 
 Using the built-in ``cdap-etl-batch`` and ``cdap-etl-realtime`` system artifacts,
 you can create ETL Pipelines (ETL Applications) with just a JSON configuration file. 
-CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/current/en/included-applications/index.html>`__
+CDAP ships with a set of built-in Sources, Sinks and Transforms as described `here <http://docs.cask.co/cdap/3.2.2/en/included-applications/index.html>`__
 which can be used to create Batch ETL Applications and Real-time ETL Applications right out of the box.
 
-Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/current/en/included-applications/etl/custom.html>`__.
+Note: If you want to create your own Source and Sink, you can find more instructions on how to do that `here <http://docs.cask.co/cdap/3.2.2/en/included-applications/etl/custom.html>`__.
 
 What You Will Create
 ====================
