@@ -28,24 +28,23 @@ Configurations for the Database Table Source
 
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 
-#. ``tableName``: This is the table from which you wish to import.
-
 #. ``user``: This is the username used to connect to the specified database. It is 
    required for databases that need authentication, optional for those that do not.
 
-#. ``password``: This is the password used to connect to the specified database. If the 
-   database requires authentication, both username and password must be provided.
+#. ``password``: This is the password used to connect to the specified database.
 
-#. ``importQuery``: This is the SELECT query used to import data from the specified table. 
-   You can specify an arbitrary number of columns to import, or import all columns using
-   \*. You can also specify a number of WHERE clauses or ORDER BY clauses. However, LIMIT
-   and OFFSET clauses should not be used in this query.
+#. ``importQuery``: The SELECT query to use to import data from the specified table.
+   You can specify an arbitrary number of columns to import, or import all columns using \*. The Query should
+   contain the '$CONDITIONS' string. For example, 'SELECT * FROM table WHERE $CONDITIONS'.
+   The '$CONDITIONS' string will be replaced by 'splitBy' field limits specified by the bounding query.
+   The '$CONDITIONS' string is not required if numSplits is set to one.
 
-#. ``countQuery``: This is the SELECT query used to get the count of records to import 
-   from the specified table. Examples: SELECT COUNT(*) from <my_table> where <my_column>
-   1, SELECT COUNT(my_column) from my_table). NOTE: Please include the same WHERE clauses
-   in this query as the ones used in the import query to reflect an accurate number of
-   records to import.
+#. ``splitBy``: The is the field used to generate splits. Not required if numSplits is set to one.
+
+#. ``numSplits``: The number of splits to generate.
+
+#. ``boundingQuery``: This is a bounding query that should return the min and max of the values of the 'splitBy' field.
+   For example, 'SELECT MIN(id),MAX(id) FROM table'. Not required if numSplits is set to one.
 
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the 
    ``name`` field in the external plugin's JSON configuration file. Defaults to 'jdbc'.
@@ -80,7 +79,8 @@ For example, if you want to use PostgreSQL::
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToHBaseTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
 
-Create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version)::
+Modify config.json to match your database settings,
+then create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version)::
 
   cdap> create app dbIngest cdap-etl-batch <version> system DBTableToHBaseTable/config.json
   Successfully created application

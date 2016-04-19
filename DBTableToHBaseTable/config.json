@@ -1,30 +1,39 @@
 {
   "config": {
     "schedule": "*/5 * * * *",
-    "source": {
-      "name": "Database",
-      "properties": {
-        "importQuery": "select col1,col2,col3,col4 from my_table where col1 < 5",
-        "countQuery": "select count(col1) from my_table where col1 < 5",
-        "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-        "tableName": "my_table",
-        "user": "postgres",
-        "password": "",
-        "jdbcPluginName": "postgres",
-        "jdbcPluginType": "jdbc"
-      }
-    },
-    "sinks": [
+    "stages": [
       {
-        "name": "Table",
-        "properties": {
-          "name": "hbase_postgres_table",
-          "schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
-          "schema.row.field": "col1"
+        "name": "dbSource",
+        "plugin": {
+          "name": "Database",
+          "type": "batchsource",
+          "properties": {
+            "importQuery": "select col1,col2,col3,col4 from my_table where $CONDITIONS",
+            "splitBy": "col1",
+            "boundingQuery": "select min(col1), max(col1) from my_table",
+            "connectionString": "jdbc:postgresql://localhost:5432/testdb",
+            "user": "postgres",
+            "password": "",
+            "jdbcPluginName": "postgres",
+            "jdbcPluginType": "jdbc"
+          }
+        }
+      },
+      {
+        "name": "hbaseSink",
+        "plugin": {
+          "name": "Table",
+          "type": "batchsink",
+          "properties": {
+            "name": "hbase_postgres_table",
+            "schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
+            "schema.row.field": "col1"
+          }
         }
       }
     ],
-    "transforms": [
+    "connections": [
+      { "from": "dbSource", "to": "hbaseSink" }
     ]
   }
 }
