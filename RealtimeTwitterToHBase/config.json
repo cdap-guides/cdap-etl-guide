@@ -1,25 +1,35 @@
 {
-    "config": {
-        "sinks": [
-            {
-                "name": "Table",
-                "properties": {
-                    "name": "tweetTable",
-                    "schema.row.field": "id",
-                    "schema": "{\"type\":\"record\",\"name\":\"tweet\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}"
-                }
-            }
-        ],
-        "source": {
-            "name": "Twitter",
-            "properties": {
-                "AccessToken": "GetAccessTokenFromTwitter",
-                "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
-                "ConsumerKey": "GetConsumerKeyFromTwitter",
-                "ConsumerSecret": "GetConsumerSecretFromTwitter"
-            }
-        },
-        "transforms": []
-    }
+  "config": {
+    "stages": [
+      {
+        "name": "tableSink",
+        "plugin": {
+          "name": "Table",
+          "type": "realtimesink",
+          "properties": {
+            "name": "tweetTable",
+              "schema.row.field": "id",
+              "schema": "{\"type\":\"record\",\"name\":\"tweet\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}"
+          }
+        }
+      },
+      {
+        "name": "twitterSource",
+        "plugin": {
+          "name": "Twitter",
+          "type": "realtimesource",
+          "properties": {
+            "AccessToken": "GetAccessTokenFromTwitter",
+            "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
+            "ConsumerKey": "GetConsumerKeyFromTwitter",
+            "ConsumerSecret": "GetConsumerSecretFromTwitter"
+          }
+        }
+      }
+    ],
+    "connections": [
+      { "from": "twitterSource", "to": "tableSink" }
+    ]
+  }
 }
 

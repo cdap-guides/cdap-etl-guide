@@ -59,8 +59,23 @@ Create an ETL Application named ``tweetApp`` (replace <version> with your CDAP v
   Successfully started worker 'ETLWorker' of application 'tweetApp' with stored runtime arguments '{}'
 
 
-You can verify that the data is being written to the Table by viewing the contents of the Table, 
-``tweetTable``, using the HBase shell.
+You can verify that the data is being written to the ``tweetTable`` dataset by executing a query against it::
+
+  cdap> execute 'select * from dataset_tweetTable limit 5 '
+  +================================================================================================================+
+  | message: STRING                                                                                                |
+  +================================================================================================================+
+  | Keating was the last PM to increase benefit, and that was a $4/week rise. @ACOSS #auwu2016                     |
+  |----------------------------------------------------------------------------------------------------------------|
+  | RT @ReverieHippie: Everything serves a purpose. Continue to learn and grow on your journey.                    |
+  |----------------------------------------------------------------------------------------------------------------|
+  | RT @MusaInspirador: NO Debes Besar Tu hijo En La Boca, Mira Por Qu\xC3\xA9?.\x0A\x0AV\xC3\x8DDEO               |
+  |----------------------------------------------------------------------------------------------------------------|
+  | @Vicente77990064 @tuyacandela  keeeeee? Quien te llamo, mamerto                                                |
+  |----------------------------------------------------------------------------------------------------------------|
+  | Espero que kevin ma\xC3\xB1ana me valla a buscar con su cel cargado porque pienso sacarme muchas fotos con el  |
+  +================================================================================================================+
+  Fetched 5 rows
 
 You have now successfully created an Application that retrieves Tweet data from Twitter and writes to an HBase Table.
 

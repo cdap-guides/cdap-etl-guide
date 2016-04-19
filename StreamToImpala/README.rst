@@ -47,14 +47,14 @@ cluster, use the Impala shell to connect to Impala::
 
   $ impala-shell -i <impala-host>
   > invalidate metadata
-  > select ticker, sum(price * trades) / 1000000 as millions from dataset_trades_converted group by ticker order by millions desc
-  +--------+-------------------+
-  | ticker | millions          |
-  +--------+-------------------+
-  | AAPL   | 3121.88477111439  |
-  | NFLX   | 866.0568582408006 |
-  | GOOG   | 469.0081187983999 |
-  +--------+-------------------+
+  > select ticker, sum(price * num) as volume from dataset_trades_converted group by ticker order by volume desc
+  +--------+----------+
+  | ticker | volume   |
+  +--------+----------+
+  | NFLX   | 22053.5  |
+  | AAPL   | 11863.0  |
+  | GOOG   | 5284.8   |
+  +--------+----------+
   Fetched 3 row(s) in 1.03s
 
 Since we are using Impala, no MapReduce jobs are launched, and the query comes back in
