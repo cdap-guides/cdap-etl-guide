@@ -1,5 +1,5 @@
 {
-  "parents" : [ "system:cdap-etl-batch[3.2.0,10.0.0)" ],
+  "parents" : [ "system:cdap-etl-batch[3.2.0,10.0.0)", "system:cdap-data-pipeline[3.4.0,10.0.0)" ],
   "plugins" : [
     {
       "name": "mysql",
