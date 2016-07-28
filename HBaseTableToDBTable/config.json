@@ -1,29 +1,38 @@
 {
   "config": {
     "schedule": "*/5 * * * *",
-    "sinks": [
+    "stages": [
       {
-        "name": "Database",
-        "properties": {
-          "columns": "col1,col2,col3,col4",
-          "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-          "tableName": "dest_table",
-          "user": "postgres",
-          "password": "",
-          "jdbcPluginName": "postgres",
-          "jdbcPluginType": "jdbc"
+        "name": "dbSink",
+        "plugin": {
+          "name": "Database",
+          "type": "batchsink",
+          "properties": {
+            "columns": "col1,col2,col3,col4",
+            "connectionString": "jdbc:postgresql://localhost:5432/testdb",
+            "tableName": "dest_table",
+            "user": "postgres",
+            "password": "",
+            "jdbcPluginName": "postgres",
+            "jdbcPluginType": "jdbc"
+          }
+        }
+      },
+      {
+        "name": "tableSource",
+        "plugin": {
+          "name": "Table",
+          "type": "batchsource",
+          "properties": {
+            "name": "hbase_postgres_table",
+            "schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"float\",\"null\"]}]}",
+            "schema.row.field": "col1"
+          }
         }
       }
     ],
-    "source": {
-      "name": "Table",
-      "properties": {
-        "name": "hbase_postgres_table",
-		"schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"float\",\"null\"]}]}",
-		"schema.row.field": "col1"
-      }
-    },
-    "transforms": [
+    "connections": [
+      { "from": "tableSource", "to": "dbSink" }
     ]
   }
 }

@@ -35,8 +35,7 @@ Configurations for the Database Table Sink
 #. ``tableName``: This is the table to which you wish to export.
 #. ``user``: This is the username used to connect to the specified database. It is required for databases 
    that need authentication, optional for those that do not.
-#. ``password``: This is the password used to connect to the specified database. If the database requires 
-   authentication, both username and password must be provided.
+#. ``password``: This is the password used to connect to the specified database.
 #. ``columns``: This is a comma-separated list of columns in the database table to which data from the 
    HBase table will be exported.
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the ``name`` field in 
