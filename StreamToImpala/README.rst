@@ -1,19 +1,32 @@
 =====================================================
-Batch CDAP Stream To Impala Application Configuration
+Batch CDAP Stream to Impala Application Configuration
 =====================================================
 
-The ``cdap-etl-batch`` system artifact can be used to create an Application that reads from a 
-Batch Source and persists it to a Sink.
-In this example, we will read events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
+The built-in ``cdap-data-pipeline`` system artifact can be used to create an data pipeline
+that reads from a Batch Source and persists it to a Sink. In this example, we will read
+events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
 
-The ``config.json`` contains a sample Application configuration that you can use to accomplish the above task. 
-Our sample Application uses the following components:
+The file `config.json <config.json>`__ contains a sample Application configuration that
+you can use to accomplish the above task. Our sample Application uses these components:
 
-- The ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
+- The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Stream source, configured to read from the *trades* Stream
 - TPFSAvro sink, configured to write to the *trades_converted* Dataset
 
-First, load some trade events to be processed by our Application::
+You can create and start the Application by using the CDAP CLI (or you can use the Cask
+Hydrator UI for a more visual approach).
+
+**Notes:**
+  
+- If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
+  modify it to include an ``artifact`` property describing the system artifact being used.
+  You can create an initial application as described here using the CLI and then clone it
+  in the UI to develop it further.
+
+
+Creating an ETL Application using CDAP CLI
+==========================================
+First, load some trade events to be processed by your Application::
 
   cdap> create stream trades
   Successfully created stream 'trades'
@@ -27,20 +40,21 @@ First, load some trade events to be processed by our Application::
   cdap> send stream trades 'GOOG|10|528.48'
   Successfully sent stream event to stream 'trades'
 
-Then you can create and start the Application by using the CDAP CLI (or you can use the UI for a more visual approach)::
+Then you can create and start the Application by using the CDAP CLI (replace <version>
+with your CDAP version)::
 
-  cdap> create app trades_conversion cdap-etl-batch <version> system StreamToImpala/config.json
+  cdap> create app trades_conversion cdap-data-pipeline <version> system StreamToImpala/config.json
   Successfully created application
 
-  cdap> start workflow trades_conversion.ETLWorkflow
-  Successfully started workflow 'ETLWorkflow' of application 'trades_conversion' with stored runtime arguments '{}'
+  cdap> start workflow trades_conversion.DataPipelineWorkflow
+  Successfully started workflow 'DataPipelineWorkflow' of application 'trades_conversion' with stored runtime arguments '{}'
 
 This will run the workflow, which will spawn a MapReduce job that reads all events added
 in the past ten minutes, writes each event to Avro-encoded files, and registers a new
 partition in the Hive Metastore. You can also schedule the workflow to run periodically::
 
-  cdap> resume schedule trades_conversion.etlWorkflow 
-  Successfully resumed schedule 'etlWorkflow' in app 'trades_conversion'
+  cdap> resume schedule trades_conversion.DataPipelineWorkflow 
+  Successfully resumed schedule 'DataPipelineWorkflow' in app 'trades_conversion'
 
 After the workflow has run, we can query the contents using Impala. On a
 cluster, use the Impala shell to connect to Impala::
@@ -64,3 +78,25 @@ You can delete the Application using the CDAP CLI::
 
   cdap> delete app trades_conversion
   Successfully deleted application 'trades_conversion'
+
+
+Share and Discuss!
+==================
+Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.com/forum/#!forum/cdap-user>`__.
+
+License
+=======
+Copyright © 2015-2016 Cask Data, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may obtain
+a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+

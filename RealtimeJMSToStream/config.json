@@ -7,9 +7,10 @@
         "plugin": {  
           "name": "JMS",
           "type": "realtimesource",
-          "properties":{  
-            "jms.messages.receive": "50",
+          "properties":{
+            "referenceName": "jmsSource",
             "jms.destination.name": "cdap.testtopic",
+            "jms.messages.receive": "50",
             "jms.factory.initial": "org.apache.activemq.jndi.ActiveMQInitialContextFactory",
             "jms.provider.url": "tcp://localhost:61616",
             "topic.cdap.testtopic": "cdap.testtopic"

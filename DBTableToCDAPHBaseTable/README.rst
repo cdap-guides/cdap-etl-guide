@@ -1,30 +1,40 @@
 ==================================================================
-Batch Database Table To CDAP HBase Table Application Configuration
+Batch Database Table to CDAP HBase Table Application Configuration
 ==================================================================
 
-The built-in ``cdap-etl-batch`` system artifact can be used to create an ETL Application
-that reads from a Batch Source and persists it to a Sink.
-In this example, we will read an entire DB table in batch and use a
-TableSink to write the database table's rows to HBase.
+The built-in ``cdap-data-pipeline`` system artifact can be used to create an data pipeline
+application that reads from a Batch Source and persists it to a Sink. In this example, we
+will read an entire DB table in batch and use a TableSink to write the database table's
+rows to a CDAP HBase Table.
 
-The ``config.json`` contains a sample Application configuration that you can use to accomplish the
-above task. Our sample Application uses these components:
+The file `config.json <config.json>`__ contains a sample Application configuration that
+you can use to accomplish the above task. Our sample Application uses these components:
 
-- The ``cdap-etl-batch`` system artifact, since we want to perform ETL in batch
+- The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Database source, to read data from the Database table 
-- Table sink, to write the rows from the Database table to an HBase table
+- Table sink, to write the rows from the Database table to a CDAP HBase table
 - A jar file containing the JDBC driver for your database. Along with this, you also need 
   a JSON file that describes the JDBC driver as an external plugin. See
   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
 
-You can create and start the Application by using the CDAP CLI (or you can use the UI for a
-more visual approach).
+You can create and start the Application by using the CDAP CLI (or you can use the Cask
+Hydrator UI for a more visual approach).
 
-Note: You need to fill in the following configurations in a file such as ``config.json``
-before creating the Application.
+**Notes:**
+
+- You need to fill in the following configurations in a file such as the `config.json
+  <config.json>`__ before creating the Application.
+  
+- If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
+  modify it to include an ``artifact`` property describing the system artifact being used.
+  You can create an initial application as described here using the CLI and then clone it
+  in the UI to develop it further.
+
 
 Configurations for the Database Table Source
---------------------------------------------
+============================================
+
+#. ``referenceName``: This will be used to uniquely identify this source for lineage, annotating metadata, etc.
 
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 
@@ -41,7 +51,7 @@ Configurations for the Database Table Source
 
 #. ``splitBy``: The is the field used to generate splits. Not required if numSplits is set to one.
 
-#. ``numSplits``: The number of splits to generate.
+#. ``numSplits``: A string of the number of splits to generate (optional).
 
 #. ``boundingQuery``: This is a bounding query that should return the min and max of the values of the 'splitBy' field.
    For example, 'SELECT MIN(id),MAX(id) FROM table'. Not required if numSplits is set to one.
@@ -58,8 +68,9 @@ Configurations for the Database Table Source
    ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the
    CDAP documentation on external plugins for more details.
 
+
 Configurations for the CDAP HBase Table Sink
---------------------------------------------
+============================================
 
 #. ``name``: This is the name of the HBase table to use as a sink.
 
@@ -68,21 +79,22 @@ Configurations for the CDAP HBase Table Sink
 #. ``schema.row.field``: This is the field in the ``StructuredRecord`` input to this Sink
    that will be used as the ``rowKey`` in the HBase table.
 
+
 Creating an ETL Application using CDAP CLI
-------------------------------------------
-Add the JDBC driver as a plugin artifact available to ``cdap-etl-batch``::
+==========================================
+Add the JDBC driver as a plugin artifact available to ``cdap-data-pipeline``::
 
   cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
 
 For example, if you want to use PostgreSQL::
 
-  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToHBaseTable/postgresql-9.4.json
+  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToCDAPHBaseTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
 
-Modify config.json to match your database settings,
-then create an ETL Application named ``dbIngest`` (replace <version> with your CDAP version)::
+Modify ``config.json`` to match your database settings, then create an application
+named ``dbIngest`` (replace <version> with your CDAP version)::
 
-  cdap> create app dbIngest cdap-etl-batch <version> system DBTableToHBaseTable/config.json
+  cdap> create app dbIngest cdap-data-pipeline <version> system DBTableToCDAPHBaseTable/config.json
   Successfully created application
 
   cdap> start workflow dbIngest.ETLWorkflow
@@ -93,15 +105,15 @@ This will run the workflow once. To schedule the workflow to run periodically::
   cdap> resume schedule dbIngest.etlWorkflow 
   Successfully resumed schedule 'etlWorkflow' in app 'dbIngest'
 
-To verify that the data has been written to the HBase Table execute the following CDAP CLI
+To verify that the data has been written to the CDAP HBase Table, execute this CDAP CLI
 command::
 
   cdap> execute 'select * from dataset_hbase_postgres_table'
 
-You have now successfully created an ETL Application that reads from a Database Table and writes
+You have now successfully created an application that reads from a Database Table and writes
 to a CDAP HBase Table.
 
-To delete the Application execute the following command using the CDAP CLI::
+To delete the application execute this command using the CDAP CLI::
 
   cdap> delete app dbIngest
   Successfully deleted application 'dbIngest'
@@ -109,14 +121,12 @@ To delete the Application execute the following command using the CDAP CLI::
 
 Share and Discuss!
 ==================
-
 Have a question? Discuss at the `CDAP User Mailing List
 <https://groups.google.com/forum/#!forum/cdap-user>`__.
 
 License
 =======
-
-Copyright © 2015 Cask Data, Inc.
+Copyright © 2015-2016 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain

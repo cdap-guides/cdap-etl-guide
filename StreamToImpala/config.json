@@ -17,6 +17,16 @@
         }
       },
       {
+        "name": "dropHeaders",
+        "plugin": {
+          "name": "Projection",
+          "type": "transform",
+          "properties": {
+            "drop": "headers"
+          }
+        }
+      },
+      {
         "name": "sink",
         "plugin": {
           "name": "TPFSAvro",
@@ -24,16 +34,6 @@
           "properties": {
             "schema":"{\"type\":\"record\",\"name\":\"streamEvent\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
             "name":"trades_converted"
-          }
-        }
-      },
-      {
-        "name": "dropHeaders",
-        "plugin": {
-          "name": "Projection",
-          "type": "transform",
-          "properties": {
-            "drop": "headers"
           }
         }
       }
