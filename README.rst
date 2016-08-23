@@ -20,16 +20,16 @@ deprecated as of CDAP 3.5.0 and replaced with the artifacts ``cdap-data-pipeline
 What You Will Create
 ====================
 
-.. |DBTableToCDAPHBaseTable| replace:: **Batch Database Table to CDAP HBase Table:**
-.. _DBTableToCDAPHBaseTable: DBTableToCDAPHBaseTable
+.. |DBTableToCDAPTable| replace:: **Batch Database Table to CDAP HBase Table:**
+.. _DBTableToCDAPTable: DBTableToCDAPTable
 
-- |DBTableToCDAPHBaseTable|_ In this Application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
+- |DBTableToCDAPTable|_ In this Application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
 
 
-.. |CDAPHBaseTableToDBTable| replace:: **Batch CDAP HBase Table to Database Table:**
-.. _CDAPHBaseTableToDBTable: CDAPHBaseTableToDBTable
+.. |CDAPTableToDBTable| replace:: **Batch CDAP HBase Table to Database Table:**
+.. _CDAPTableToDBTable: CDAPTableToDBTable
 
-- |CDAPHBaseTableToDBTable|_ This Application exports the contents of a CDAP HBase Table to a Database Table in Batch.
+- |CDAPTableToDBTable|_ This Application exports the contents of a CDAP HBase Table to a Database Table in Batch.
 
 
 .. |StreamToImpala| replace:: **Batch CDAP Stream To Impala:**
