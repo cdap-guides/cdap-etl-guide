@@ -7,8 +7,8 @@ application that reads from a Batch Source and persists it to a Sink. In this ex
 will read an entire CDAP HBase table in batch mode and use a Database Sink to write the
 table's rows to a database.
 
-The file `config.json <config.json>`__ contains a sample Application configuration that
-you can use to accomplish the above task. Our sample Application uses these components:
+The file `config.json <config.json>`__ contains a sample application configuration that
+you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Table source, to read data from the CDAP HBase table 
@@ -17,13 +17,13 @@ you can use to accomplish the above task. Our sample Application uses these comp
   that describes the JDBC driver as an external plugin. See ``mysql-connector-java-5.1.35.json`` and 
   ``postgresql-9.4.json`` as examples.
 
-You can create and start the Application by using the CDAP CLI (or you can use the Cask
+You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
 
 **Notes:**
 
 - You need to fill in the following configurations in a file such as the `config.json
-  <config.json>`__ before creating the Application.
+  <config.json>`__ before creating the application.
   
 - If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
   modify it to include an ``artifact`` property describing the system artifact being used.
@@ -70,8 +70,8 @@ Configurations for the Database Table Sink
    documentation on external plugins for more details.
 
 
-Creating an ETL Application using CDAP CLI
-==========================================
+Creating a Hydrator Application using the CDAP CLI
+==================================================
 Add the JDBC driver as a plugin artifact available to ``cdap-data-pipeline``::
 
   cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
@@ -100,7 +100,7 @@ To verify that the data has been written to the Database Table, execute this SQL
 
 You have now successfully created an application that reads from a CDAP HBase Table and writes to a Database Table.
 
-To delete the Application execute this command using the CDAP CLI::
+To delete the application execute this command using the CDAP CLI::
 
   cdap> delete app dbExport
   Successfully deleted application 'dbExport'

@@ -2,24 +2,24 @@
 Real-time Kafka to HBase Application Configuration
 ==================================================
 
-The ``cdap-etl-realtime`` system artifact can be used to create an Application that reads
+The ``cdap-etl-realtime`` system artifact can be used to create an application that reads
 from a real-time Source and persists it to a Sink. In this example, we will read messages
 from Kafka in real time and use a TableSink to write the Kafka messages to HBase.
 
-The file `config.json <config.json>`__ contains a sample Application configuration that
-you can use to accomplish the above task. Our sample Application uses these components:
+The file `config.json <config.json>`__ contains a sample application configuration that
+you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-etl-realtime`` system artifact, since we want to perform ETL in real time
 - Kafka source, with our custom kafka.zookeeper configuration
 - Table sink, to write the Kafka events to HBase using the Table dataset
 
-You can create and start the Application by using the CDAP CLI (or you can use the Cask
+You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
 
 **Notes:**
 
 - You need to fill in the following configurations in a file such as the `config.json
-  <config.json>`__ before creating the Application.
+  <config.json>`__ before creating the application.
   
 - If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
   modify it to include an ``artifact`` property describing the system artifact being used.
@@ -27,11 +27,11 @@ Hydrator UI for a more visual approach).
   in the UI to develop it further.
 
 - You need to fill in the ``kafka.zookeeper`` configuration in ``config.json`` before
-  creating the Application. This is the connection string to your Kafka server in ZooKeeper.
+  creating the application. This is the connection string to your Kafka server in ZooKeeper.
 
-Creating an ETL Application using CDAP CLI
-==========================================
-Create an ETL Application named ``kafkaIngest`` (replace <version> with your CDAP version)::
+Creating a Hydrator Application using the CDAP CLI
+==================================================
+Create a Hydrator application named ``kafkaIngest`` (replace <version> with your CDAP version)::
 
   cdap> create app kafkaIngest cdap-etl-realtime <version> system RealtimeKafkaToHBase/config.json
   Successfully created application
@@ -46,7 +46,7 @@ by executing the following CLI command::
 
 You have now successfully created an Adapter that reads from Kafka and writes to HBase.
 
-You can stop and delete the Application using the CDAP CLI.
+You can stop and delete the application using the CDAP CLI.
 
 ::
 

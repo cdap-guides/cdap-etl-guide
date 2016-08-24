@@ -8,20 +8,20 @@ real-time Source and pass it to a Sink for further processing.
 In this example, we will poll messages from a Java Message Service (JMS) source in real time and 
 use a Stream Sink to write the messages to a CDAP Stream.
 
-The file `config.json <config.json>`__ contains a sample Application configuration that
-you can use to accomplish the above task. Our sample Application uses these components:
+The file `config.json <config.json>`__ contains a sample application configuration that
+you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-etl-realtime`` system artifact, since we want to perform the pipeline in real time
 - JMS source, using the implementation of JMS from Apache ActiveMQ, version 5.11.1
 - Stream sink to hold the incoming messages to be processed by a downstream program such as a CDAP Flow
 
-You can create and start the Application by using the CDAP CLI (or you can use the Cask
+You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
 
 **Notes:**
 
 - You need to fill in the following configurations in a file such as the `config.json
-  <config.json>`__ before creating the Application.
+  <config.json>`__ before creating the application.
   
 - If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
   modify it to include an ``artifact`` property describing the system artifact being used.
@@ -78,7 +78,7 @@ For example, the Apache ActiveMQ requires that the Topic or Queue name be set as
 ``topic.<destination name>`` or ``queue.<destination name>`` property key names in order
 for the JNDI context to be resolved.
 
-The ``config.json`` file included shows the Application configuration file with sample
+The ``config.json`` file included shows the application configuration file with sample
 values for the JMS source properties.
 
 

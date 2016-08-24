@@ -6,14 +6,14 @@ The built-in ``cdap-data-pipeline`` system artifact can be used to create an dat
 that reads from a Batch Source and persists it to a Sink. In this example, we will read
 events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
 
-The file `config.json <config.json>`__ contains a sample Application configuration that
-you can use to accomplish the above task. Our sample Application uses these components:
+The file `config.json <config.json>`__ contains a sample application configuration that
+you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Stream source, configured to read from the *trades* Stream
 - TPFSAvro sink, configured to write to the *trades_converted* Dataset
 
-You can create and start the Application by using the CDAP CLI (or you can use the Cask
+You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
 
 **Notes:**
@@ -24,9 +24,9 @@ Hydrator UI for a more visual approach).
   in the UI to develop it further.
 
 
-Creating an ETL Application using CDAP CLI
-==========================================
-First, load some trade events to be processed by your Application::
+Creating a Hydrator Application using the CDAP CLI
+==================================================
+First, load some trade events to be processed by your application::
 
   cdap> create stream trades
   Successfully created stream 'trades'
@@ -40,7 +40,7 @@ First, load some trade events to be processed by your Application::
   cdap> send stream trades 'GOOG|10|528.48'
   Successfully sent stream event to stream 'trades'
 
-Then you can create and start the Application by using the CDAP CLI (replace <version>
+Then you can create and start the application by using the CDAP CLI (replace <version>
 with your CDAP version)::
 
   cdap> create app trades_conversion cdap-data-pipeline <version> system StreamToImpala/config.json
@@ -74,7 +74,7 @@ cluster, use the Impala shell to connect to Impala::
 Since we are using Impala, no MapReduce jobs are launched, and the query comes back in
 about one second.
 
-You can delete the Application using the CDAP CLI::
+You can delete the application using the CDAP CLI::
 
   cdap> delete app trades_conversion
   Successfully deleted application 'trades_conversion'
