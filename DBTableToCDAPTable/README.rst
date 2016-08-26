@@ -36,25 +36,26 @@ Configurations for the Database Table Source
 
 #. ``referenceName``: This will be used to uniquely identify this source for lineage, annotating metadata, etc.
 
-#. ``connectionString``: This is the JDBC connection string that includes the database name.
+#. ``connectionString``: The JDBC connection string that includes the database name.
 
-#. ``user``: This is the username used to connect to the specified database. It is 
+#. ``user``: The username used to connect to the specified database. It is 
    required for databases that need authentication, optional for those that do not.
 
-#. ``password``: This is the password used to connect to the specified database.
+#. ``password``: The password used to connect to the specified database. It is 
+   required for databases that need authentication, optional for those that do not.
 
 #. ``importQuery``: The SELECT query to use to import data from the specified table.
    You can specify an arbitrary number of columns to import, or import all columns using \*. The Query should
    contain the '$CONDITIONS' string. For example, 'SELECT * FROM table WHERE $CONDITIONS'.
    The '$CONDITIONS' string will be replaced by 'splitBy' field limits specified by the bounding query.
-   The '$CONDITIONS' string is not required if numSplits is set to one.
+   The '$CONDITIONS' string is not required if ``numSplits`` is set to one.
 
-#. ``splitBy``: The is the field used to generate splits. Not required if numSplits is set to one.
+#. ``splitBy``: The is the field used to generate splits. Not required if ``numSplits`` is set to one.
 
-#. ``numSplits``: A string of the number of splits to generate (optional).
+#. ``numSplits``: The number of splits to generate (optional).
 
-#. ``boundingQuery``: This is a bounding query that should return the min and max of the values of the 'splitBy' field.
-   For example, 'SELECT MIN(id),MAX(id) FROM table'. Not required if numSplits is set to one.
+#. ``boundingQuery``: A bounding query that should return the minimum and maximum of the values of the 'splitBy' field.
+   For example, 'SELECT MIN(id),MAX(id) FROM table'. Not required if ``numSplits`` is set to one.
 
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the 
    ``name`` field in the external plugin's JSON configuration file. Defaults to 'jdbc'.
@@ -72,11 +73,11 @@ Configurations for the Database Table Source
 Configurations for the CDAP HBase Table Sink
 ============================================
 
-#. ``name``: This is the name of the HBase table to use as a sink.
+#. ``name``: The name of the HBase table to use as a sink.
 
-#. ``schema``: This is the JSON representation of the HBase Table's schema.
+#. ``schema``: The JSON representation of the HBase Table's schema.
 
-#. ``schema.row.field``: This is the field in the ``StructuredRecord`` input to this Sink
+#. ``schema.row.field``: The field in the ``StructuredRecord`` input to this Sink
    that will be used as the ``rowKey`` in the HBase table.
 
 
