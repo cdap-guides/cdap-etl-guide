@@ -14,7 +14,7 @@
             "password": "",
             "importQuery": "select col1,col2,col3,col4 from my_table where $CONDITIONS",
             "splitBy": "col1",
-            "numSplits": 1,
+            "numSplits": "1",
             "boundingQuery": "select min(col1), max(col1) from my_table",
             "jdbcPluginName": "postgres",
             "jdbcPluginType": "jdbc"
