@@ -2,9 +2,9 @@
 Batch Database Table to CDAP HBase Table Application Configuration
 ==================================================================
 
-The built-in ``cdap-data-pipeline`` system artifact can be used to create an data pipeline
+The built-in ``cdap-data-pipeline`` system artifact can be used to create a data pipeline
 application that reads from a Batch Source and persists it to a Sink. In this example, we
-will read an entire DB table in batch and use a TableSink to write the database table's
+will read an entire database table in batch and use a TableSink to write the database table's
 rows to a CDAP HBase Table.
 
 The file `config.json <config.json>`__ contains a sample application configuration that

@@ -2,7 +2,7 @@
 Batch CDAP Stream to Impala Application Configuration
 =====================================================
 
-The built-in ``cdap-data-pipeline`` system artifact can be used to create an data pipeline
+The built-in ``cdap-data-pipeline`` system artifact can be used to create a data pipeline
 that reads from a Batch Source and persists it to a Sink. In this example, we will read
 events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
 
