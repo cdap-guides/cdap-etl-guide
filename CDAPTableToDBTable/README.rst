@@ -13,7 +13,7 @@ you can use to accomplish the above task. Our sample application uses these comp
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Table source, to read data from the CDAP HBase table 
 - Database sink, to write the data from the CDAP HBase table to a database table
-- A jar file containing the JDBC driver for your database. Along with this, you also need a JSON file 
+- A JAR file containing the JDBC driver for your database. With this, you will need a JSON file 
   that describes the JDBC driver as an external plugin. See ``mysql-connector-java-5.1.35.json`` and 
   ``postgresql-9.4.json`` as examples.
 
@@ -60,13 +60,13 @@ Configurations for the Database Table Sink
    HBase table will be exported.
    
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the ``name`` field in 
-   the external plugin's JSON configuration file. Defaults to 'jdbc'. Please find examples of external plugins
-   in the files ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the CDAP 
+   the external plugin's JSON configuration file. Defaults to 'jdbc'. Examples of external plugins are
+   in the files ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Refer to the CDAP 
    documentation on external plugins for more details.
    
 #. ``jdbcPluginType``: The name of the external JDBC plugin. This is the value of the ``type`` field in 
-   the external plugin's JSON configuration file. Defaults to 'jdbc'. Please find examples of external plugins 
-   in the files ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the CDAP 
+   the external plugin's JSON configuration file. Defaults to 'jdbc'. Examples of external plugins are
+   in the files ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Refer to the CDAP 
    documentation on external plugins for more details.
 
 
@@ -78,12 +78,12 @@ Add the JDBC driver as a plugin artifact available to ``cdap-data-pipeline``::
 
 For example, if you want to use PostgreSQL::
 
-  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file CDAPHBaseTableToDBTable/postgresql-9.4.json
+  cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file CDAPTableToDBTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
   
 Create an application named ``dbExport`` (replace <version> with your CDAP version)::
 
-  cdap> create app dbExport cdap-data-pipeline <version> system CDAPHBaseTableToDBTable/config.json
+  cdap> create app dbExport cdap-data-pipeline <version> system CDAPTableToDBTable/config.json
   Successfully created application
 
   cdap> start workflow dbExport.ETLWorkflow

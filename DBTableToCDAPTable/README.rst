@@ -13,7 +13,7 @@ you can use to accomplish the above task. Our sample application uses these comp
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Database source, to read data from the Database table 
 - Table sink, to write the rows from the Database table to a CDAP HBase table
-- A jar file containing the JDBC driver for your database. Along with this, you also need 
+- A JAR file containing the JDBC driver for your database. With this, you will need 
   a JSON file that describes the JDBC driver as an external plugin. See
   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
 
@@ -59,15 +59,15 @@ Configurations for the Database Table Source
 
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the 
    ``name`` field in the external plugin's JSON configuration file. Defaults to 'jdbc'.
-   Please find examples of external plugins in the files
-   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the
-   CDAP documentation on external plugins for more details.
+   Examples of external plugins are in the files ``mysql-connector-java-5.1.35.json`` and
+   ``postgresql-9.4.json``. Refer to the CDAP documentation on external plugins for more
+   details.
 
 #. ``jdbcPluginType``: The name of the external JDBC plugin. This is the value of the
    ``type`` field in the external plugin's JSON configuration file. Defaults to 'jdbc'.
-   Please find examples of external plugins in the files
-   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json``. Also refer to the
-   CDAP documentation on external plugins for more details.
+   Examples of external plugins are in the files ``mysql-connector-java-5.1.35.json`` and
+   ``postgresql-9.4.json``. Refer to the CDAP documentation on external plugins for more
+   details.
 
 
 Configurations for the CDAP HBase Table Sink

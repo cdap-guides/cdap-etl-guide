@@ -32,25 +32,25 @@ What You Will Create
 - |CDAPTableToDBTable|_ This application exports the contents of a CDAP HBase Table to a Database Table in Batch.
 
 
-.. |StreamToImpala| replace:: **Batch CDAP Stream To Impala:**
+.. |StreamToImpala| replace:: **Batch CDAP Stream to Impala:**
 .. _StreamToImpala: StreamToImpala
 
 - |StreamToImpala|_ This application makes the events ingested in a CDAP Stream queryable through Impala.
 
 
-.. |RealtimeKafkaToHBase| replace:: **Real-time Kafka To HBase:**
+.. |RealtimeKafkaToHBase| replace:: **Real-time Kafka to HBase:**
 .. _RealtimeKafkaToHBase: RealtimeKafkaToHBase
 
 - |RealtimeKafkaToHBase|_ With this application, we will fetch messages from Kafka in real time and write to an HBase Table.
 
 
-.. |RealtimeTwitterToHBase| replace:: **Real-time Twitter To HBase:**
+.. |RealtimeTwitterToHBase| replace:: **Real-time Twitter to HBase:**
 .. _RealtimeTwitterToHBase: RealtimeTwitterToHBase
 
 - |RealtimeTwitterToHBase|_ In this application, we will read Tweets from Twitter in real time and write to an HBase Table.
 
 
-.. |RealtimeJMSToStream| replace:: **Real-time JMS To Stream:**
+.. |RealtimeJMSToStream| replace:: **Real-time JMS to Stream:**
 .. _RealtimeJMSToStream: RealtimeJMSToStream
 
 - |RealtimeJMSToStream|_ In this application, we will read messages from a JMS producer in real time and write to a CDAP Stream.

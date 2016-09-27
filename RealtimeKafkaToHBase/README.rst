@@ -2,15 +2,15 @@
 Real-time Kafka to HBase Application Configuration
 ==================================================
 
-The ``cdap-etl-realtime`` system artifact can be used to create an application that reads
+The ``cdap-data-streams`` system artifact can be used to create an application that reads
 from a real-time Source and persists it to a Sink. In this example, we will read messages
 from Kafka in real time and use a TableSink to write the Kafka messages to HBase.
 
 The file `config.json <config.json>`__ contains a sample application configuration that
 you can use to accomplish the above task. Our sample application uses these components:
 
-- The ``cdap-etl-realtime`` system artifact, since we want to perform ETL in real time
-- Kafka source, with our custom kafka.zookeeper configuration
+- The ``cdap-data-streams`` system artifact, since we want to perform ETL in real time
+- Kafka source, with a custom kafka.zookeeper configuration
 - Table sink, to write the Kafka events to HBase using the Table dataset
 
 You can create and start the application by using the CDAP CLI (or you can use the Cask
@@ -33,14 +33,14 @@ Creating a Hydrator Application using the CDAP CLI
 ==================================================
 Create a Hydrator application named ``kafkaIngest`` (replace <version> with your CDAP version)::
 
-  cdap> create app kafkaIngest cdap-etl-realtime <version> system RealtimeKafkaToHBase/config.json
+  cdap> create app kafkaIngest cdap-data-streams <version> system RealtimeKafkaToHBase/config.json
   Successfully created application
 
   cdap> start worker kafkaIngest.ETLWorker
   Successfully started worker 'ETLWorker' of application 'kafkaIngest' with stored runtime arguments '{}'
 
 You can verify that the data is being written to the HBase by viewing the contents of the Dataset metrics, 
-by executing the following CLI command::
+by executing this CLI command::
 
   cdap> execute 'select * from dataset_metrics'
 
