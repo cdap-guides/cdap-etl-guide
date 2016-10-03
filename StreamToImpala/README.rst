@@ -3,15 +3,15 @@ Batch CDAP Stream to Impala Application Configuration
 =====================================================
 
 The built-in ``cdap-data-pipeline`` system artifact can be used to create a data pipeline
-that reads from a Batch Source and persists it to a Sink. In this example, we will read
-events from a Stream in batch and use a TPFS Sink to make the data queryable by Impala.
+that reads from a Batch source and persists it to a sink. In this example, we will read
+events from a stream in batch and use the TPFSAvro sink to make the data queryable by Impala.
 
 The file `config.json <config.json>`__ contains a sample application configuration that
 you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
-- Stream source, configured to read from the *trades* Stream
-- TPFSAvro sink, configured to write to the *trades_converted* Dataset
+- Stream source, configured to read from the *trades* stream
+- TPFSAvro sink, configured to write to the *trades_converted* dataset
 
 You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
@@ -29,7 +29,7 @@ Creating a Hydrator Application using the CDAP CLI
 First, load some trade events to be processed by your application::
 
   cdap> create stream trades
-  Successfully created stream 'trades'
+  Successfully created stream with ID 'trades'
 
   cdap> send stream trades 'NFLX|50|441.07'
   Successfully sent stream event to stream 'trades'
@@ -53,8 +53,8 @@ This will run the workflow, which will spawn a MapReduce job that reads all even
 in the past ten minutes, writes each event to Avro-encoded files, and registers a new
 partition in the Hive Metastore. You can also schedule the workflow to run periodically::
 
-  cdap> resume schedule trades_conversion.DataPipelineWorkflow 
-  Successfully resumed schedule 'DataPipelineWorkflow' in app 'trades_conversion'
+  cdap> resume schedule trades_conversion.dataPipelineSchedule
+  Successfully resumed schedule 'dataPipelineSchedule' in app 'trades_conversion'
 
 After the workflow has run, we can query the contents using Impala. On a
 cluster, use the Impala shell to connect to Impala::
@@ -74,7 +74,12 @@ cluster, use the Impala shell to connect to Impala::
 Since we are using Impala, no MapReduce jobs are launched, and the query comes back in
 about one second.
 
-You can delete the application using the CDAP CLI::
+Suspending and Deleting
+-----------------------
+You can suspend and delete the application using the CDAP CLI::
+
+  cdap> suspend schedule trades_conversion.dataPipelineSchedule
+  Successfully suspended schedule 'dataPipelineSchedule' in app 'trades_conversion'
 
   cdap> delete app trades_conversion
   Successfully deleted application 'trades_conversion'

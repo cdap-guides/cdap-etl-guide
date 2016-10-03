@@ -4,8 +4,8 @@ Creating Hydrator Applications using CDAP System Artifacts
 
 Using the built-in ``cdap-data-pipeline`` and ``cdap-data-streams`` system artifacts, you can
 create Cask Hydrator Pipelines (Hydrator Applications) with just a JSON configuration file. CDAP ships
-with a set of built-in Sources, Sinks, Transforms, and other plugins as described `here
-<http://docs.cdap.io/cdap/current/en/hydrator-manual/plugins/index.html>`__ which can be used
+with a set of built-in Sources, Sinks, Transforms, and other plugins (described `here
+<http://docs.cdap.io/cdap/current/en/hydrator-manual/plugins/index.html>`__) which can be used
 to create batch and real-time data pipeline applications right out of the box.
 
 Note: If you want to create your own Source, Sink, or other plugin, you can find more
@@ -20,16 +20,16 @@ deprecated as of CDAP 3.5.0 and replaced with the artifacts ``cdap-data-pipeline
 What You Will Create
 ====================
 
-.. |DBTableToCDAPTable| replace:: **Batch Database Table to CDAP HBase Table:**
-.. _DBTableToCDAPTable: DBTableToCDAPTable
-
-- |DBTableToCDAPTable|_ In this application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
-
-
 .. |CDAPTableToDBTable| replace:: **Batch CDAP HBase Table to Database Table:**
 .. _CDAPTableToDBTable: CDAPTableToDBTable
 
 - |CDAPTableToDBTable|_ This application exports the contents of a CDAP HBase Table to a Database Table in Batch.
+
+
+.. |DBTableToCDAPTable| replace:: **Batch Database Table to CDAP HBase Table:**
+.. _DBTableToCDAPTable: DBTableToCDAPTable
+
+- |DBTableToCDAPTable|_ In this application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
 
 
 .. |StreamToImpala| replace:: **Batch CDAP Stream to Impala:**
@@ -38,22 +38,22 @@ What You Will Create
 - |StreamToImpala|_ This application makes the events ingested in a CDAP Stream queryable through Impala.
 
 
-.. |RealtimeKafkaToHBase| replace:: **Real-time Kafka to HBase:**
-.. _RealtimeKafkaToHBase: RealtimeKafkaToHBase
+.. |RealtimeJMSToStream| replace:: **Real-time JMS to Stream:**
+.. _RealtimeJMSToStream: RealtimeJMSToStream
 
-- |RealtimeKafkaToHBase|_ With this application, we will fetch messages from Kafka in real time and write to an HBase Table.
+- |RealtimeJMSToStream|_ In this application, we will read messages from a JMS producer in real time and write to a CDAP Stream.
+
+
+.. |RealtimeKafkaToTPFSAvro| replace:: **Real-time Kafka to TPFS Avro:**
+.. _RealtimeKafkaToTPFSAvro: RealtimeKafkaToTPFSAvro
+
+- |RealtimeKafkaToTPFSAvro|_ This application fetches messages from Kafka in real time and writes to Time-PartitionedFileSets in Avro format.
 
 
 .. |RealtimeTwitterToHBase| replace:: **Real-time Twitter to HBase:**
 .. _RealtimeTwitterToHBase: RealtimeTwitterToHBase
 
 - |RealtimeTwitterToHBase|_ In this application, we will read Tweets from Twitter in real time and write to an HBase Table.
-
-
-.. |RealtimeJMSToStream| replace:: **Real-time JMS to Stream:**
-.. _RealtimeJMSToStream: RealtimeJMSToStream
-
-- |RealtimeJMSToStream|_ In this application, we will read messages from a JMS producer in real time and write to a CDAP Stream.
 
 
 What You Will Need
@@ -70,6 +70,10 @@ commands assume that the ``cdap-cli.sh`` script is available on your PATH. If th
 the case, please add it::
 
   $ export PATH=$PATH:<CDAP home>/bin
+  
+or, from within the <CDAP home> directory::
+
+  $ export PATH=${PATH}:`pwd`/bin
 
 If you haven't already started a standalone CDAP installation, start it with the command::
 

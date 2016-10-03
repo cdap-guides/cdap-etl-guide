@@ -3,7 +3,7 @@ Batch Database Table to CDAP HBase Table Application Configuration
 ==================================================================
 
 The built-in ``cdap-data-pipeline`` system artifact can be used to create a data pipeline
-application that reads from a Batch Source and persists it to a Sink. In this example, we
+application that reads from a batch Source and persists it to a sink. In this example, we
 will read an entire database table in batch and use a TableSink to write the database table's
 rows to a CDAP HBase Table.
 
@@ -11,8 +11,8 @@ The file `config.json <config.json>`__ contains a sample application configurati
 you can use to accomplish the above task. Our sample application uses these components:
 
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
-- Database source, to read data from the Database table 
-- Table sink, to write the rows from the Database table to a CDAP HBase table
+- Database source, to read data from the database table 
+- Table sink, to write the rows from the database table to a CDAP HBase table
 - A JAR file containing the JDBC driver for your database. With this, you will need 
   a JSON file that describes the JDBC driver as an external plugin. See
   ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
@@ -77,8 +77,8 @@ Configurations for the CDAP HBase Table Sink
 
 #. ``schema``: The JSON representation of the HBase Table's schema.
 
-#. ``schema.row.field``: The field in the ``StructuredRecord`` input to this Sink
-   that will be used as the ``rowKey`` in the HBase table.
+#. ``schema.row.field``: The field in the record input to this sink
+   that will be used as the row key in the HBase table.
 
 
 Creating a Hydrator Application using the CDAP CLI
@@ -87,7 +87,7 @@ Add the JDBC driver as a plugin artifact available to ``cdap-data-pipeline``::
 
   cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
 
-For example, if you want to use PostgreSQL::
+For example, to use PostgreSQL::
 
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file DBTableToCDAPHBaseTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
@@ -95,26 +95,33 @@ For example, if you want to use PostgreSQL::
 Modify ``config.json`` to match your database settings, then create an application
 named ``dbIngest`` (replace <version> with your CDAP version)::
 
-  cdap> create app dbIngest cdap-data-pipeline <version> system DBTableToCDAPHBaseTable/config.json
+  cdap> create app dbIngest cdap-data-pipeline <version> system DBTableToCDAPTable/config.json
   Successfully created application
 
-  cdap> start workflow dbIngest.ETLWorkflow
-  Successfully started workflow 'ETLWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
+  cdap> start workflow dbIngest.DataPipelineWorkflow
+  Successfully started workflow 'DataPipelineWorkflow' of application 'dbIngest' with stored runtime arguments '{}'
 
 This will run the workflow once. To schedule the workflow to run periodically::
 
-  cdap> resume schedule dbIngest.etlWorkflow 
-  Successfully resumed schedule 'etlWorkflow' in app 'dbIngest'
+  cdap> resume schedule dbIngest.dataPipelineSchedule 
+  Successfully resumed schedule 'dataPipelineSchedule' in app 'dbIngest'
 
-To verify that the data has been written to the CDAP HBase Table, execute this CDAP CLI
-command::
+To verify that the data has been written to the CDAP Table, execute a CDAP CLI
+command such as::
 
   cdap> execute 'select * from dataset_hbase_postgres_table'
+  
+(The exact command will depend on your database table name.)
 
 You have now successfully created an application that reads from a Database Table and writes
 to a CDAP HBase Table.
 
-To delete the application execute this command using the CDAP CLI::
+Suspending and Deleting
+-----------------------
+You can suspend and delete the application using the CDAP CLI::
+
+  cdap> suspend schedule dbIngest.dataPipelineSchedule
+  Successfully suspended schedule 'dataPipelineSchedule' in app 'dbIngest'
 
   cdap> delete app dbIngest
   Successfully deleted application 'dbIngest'

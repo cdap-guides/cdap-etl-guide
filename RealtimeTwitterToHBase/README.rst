@@ -2,10 +2,11 @@
 Real-time Twitter to HBase Application Configuration
 ====================================================
 
-Let's say we want to fetch Tweets from Twitter in real time and persist them in an HBase
-Table. The ``cdap-etl-realtime`` system artifact can be used to create an Application that
-reads from a real-time Source and persists it to a real-time Sink. In this example, we
-will read messages from Twitter and use a TableSink to write the Tweets to HBase.
+If you want to fetch Tweets from Twitter in real time and persist them in an HBase Table,
+you can using Hydrator. The ``cdap-data-streams`` system artifact can be used to create an
+Application that reads from a real-time source and persists it to a real-time sink. In
+this example, we will read messages from Twitter and use a TableSink to write the Tweets
+to HBase.
 
 Configuration
 =============
@@ -17,22 +18,19 @@ Hydrator UI for a more visual approach).
 
 **Notes:**
 
-- You need to fill in the following configurations in a file such as the `config.json
-  <config.json>`__ before creating the Application.
-  
 - If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
-  modify it to include an ``artifact`` property describing the system artifact being used.
-  You can create an initial application as described here using the CLI and then clone it
-  in the UI to develop it further.
+  adjust the version of the ``artifact`` property to described the system artifact being
+  used. You can create an initial application as described here using the CLI and then
+  clone it in the UI to develop it further.
+  
+- You need to complete the source and sink configurations as described below before
+  creating your application.
 
 Source
 ------
-We choose the Twitter Source and provide the OAuth credentials as properties to the Source. Since we 
-want to persist the Tweets to HBase, we use a Table Sink. For the Table Sink, we set the table name 
-to be ``tweetTable`` (which will be created if the Table doesn't exist already) and we set the row key to 
-be the ``id`` field of the Record emitted by the Twitter Source.
+We choose the Twitter source and provide the OAuth credentials as properties to the source.
 
-For selecting the Source, we use the "source" property. The Twitter Source expects four properties 
+For selecting the source, we use the "source" property. The Twitter source expects four properties 
 (OAuth credentials for Twitter):
 
 - ``AccessToken``
@@ -41,30 +39,34 @@ For selecting the Source, we use the "source" property. The Twitter Source expec
 - ``ConsumerSecret``
 
 Note: You need to fill in the OAuth credentials in ``config.json`` before creating the
-Application. You can visit `Twitter <https://dev.twitter.com>`__ for more information on
-how to obtain OAuth credentials for the Twitter Source.
+Application. You can visit `Twitter <https://dev.twitter.com>`__ and
+`dev.Twitter <https://dev.twitter.com/oauth/overview/application-owner-access-tokens>`__
+for information on how to obtain OAuth credentials for the Twitter source.
 
 Sink
 ----
-Similarly, for selecting the Sink, we use the "sink" property. The Table Sink expects two properties:
+Since we want to persist the Tweets to HBase, we use a Table sink. For the Table sink, we
+set the table name to be ``tweetTable`` (which will be created if the Table doesn't
+already exist) and we set the row key to be the ``id`` field of the record emitted by the
+Twitter source:
 
-- ``name``: Name of the Table Dataset.
-- ``schema.row.field``: The field which is used as the row key in the Table.
+- ``name``: Name of the Table dataset
+- ``schema.row.field``: The field which is used as the row key in the Table
 
 Creating and Running
 ====================
-Create an ETL Application named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
+Create a Hydrator application named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
 
-  cdap> create app tweetApp cdap-etl-realtime <version> system RealtimeTwitterToHBase/config.json
+  cdap> create app tweetApp cdap-data-streams <version> system RealtimeTwitterToHBase/config.json
   Successfully created application
 
-  cdap> start worker tweetApp.ETLWorker
-  Successfully started worker 'ETLWorker' of application 'tweetApp' with stored runtime arguments '{}'
+  cdap> start spark tweetApp.DataStreamsSparkStreaming
+  Successfully started Spark program 'DataStreamsSparkStreaming' of application 'tweetApp' with stored runtime arguments '{}'
 
 
 You can verify that the data is being written to the ``tweetTable`` dataset by executing a query against it::
 
-  cdap> execute 'select * from dataset_tweetTable limit 5 '
+  cdap> execute 'select message from dataset_tweetTable limit 5'
   +================================================================================================================+
   | message: STRING                                                                                                |
   +================================================================================================================+
@@ -85,14 +87,14 @@ You have now successfully created an Application that retrieves Tweet data from 
 
 Stopping and Deleting
 ---------------------
-
 You can stop and delete the Application using the CDAP CLI::
 
-  cdap> stop worker tweetApp.ETLWorker
-  Successfully stopped worker 'ETLWorker' of application 'tweetApp'
+  cdap> stop spark tweetApp.DataStreamsSparkStreaming
+  Successfully stopped Spark program 'DataStreamsSparkStreaming' of application 'tweetApp'
 
   cdap> delete app tweetApp
   Successfully deleted application 'tweetApp'
+
 
 Share and Discuss!
 ==================

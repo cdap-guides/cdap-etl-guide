@@ -22,7 +22,7 @@ Hydrator UI for a more visual approach).
 
 **Notes:**
 
-- You need to fill in the following configurations in a file such as the `config.json
+- You need to fill in the configurations described below in a file such as the `config.json
   <config.json>`__ before creating the application.
   
 - If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
@@ -49,7 +49,7 @@ Configurations for the Database Table Sink
 
 #. ``connectionString``: This is the JDBC connection string that includes the database name.
 
-#. ``tableName``: This is the table to which you wish to export.
+#. ``tableName``: This is the table to which you wish to write.
 
 #. ``user``: This is the username used to connect to the specified database. It is required for databases 
    that need authentication, optional for those that do not.
@@ -57,7 +57,7 @@ Configurations for the Database Table Sink
 #. ``password``: This is the password used to connect to the specified database.
 
 #. ``columns``: This is a comma-separated list of columns in the database table to which data from the 
-   HBase table will be exported.
+   HBase table will be written.
    
 #. ``jdbcPluginName``: The name of the external JDBC plugin. This is the value of the ``name`` field in 
    the external plugin's JSON configuration file. Defaults to 'jdbc'. Examples of external plugins are
@@ -76,31 +76,39 @@ Add the JDBC driver as a plugin artifact available to ``cdap-data-pipeline``::
 
   cdap> load artifact </path/to/driver.jar> config-file </path/to/config.json>
 
-For example, if you want to use PostgreSQL::
+For example, to use PostgreSQL::
 
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file CDAPTableToDBTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
-  
+
+
+load artifact ~/Desktop/postgresql-9.4-1203.jdbc41.jar config-file ~/Source/cdap-etl-guide/CDAPTableToDBTable/postgresql-9.4.json
+
 Create an application named ``dbExport`` (replace <version> with your CDAP version)::
 
   cdap> create app dbExport cdap-data-pipeline <version> system CDAPTableToDBTable/config.json
   Successfully created application
 
-  cdap> start workflow dbExport.ETLWorkflow
-  Successfully started workflow 'ETLWorkflow' of application 'dbExport' with stored runtime arguments '{}'
+  cdap> start workflow dbExport.DataPipelineWorkflow
+  Successfully started workflow 'DataPipelineWorkflow' of application 'dbExport' with stored runtime arguments '{}'
 
 This will run the workflow once. To schedule the workflow to run periodically::
 
-  cdap> resume schedule dbExport.etlWorkflow
-  Successfully resumed schedule 'etlWorkflow' in app 'dbExport'
+  cdap> resume schedule dbExport.dataPipelineSchedule
+  Successfully resumed schedule 'dataPipelineSchedule' in app 'dbExport'
 
 To verify that the data has been written to the Database Table, execute this SQL command on your Database::
 
   select * from dest_db_table
 
-You have now successfully created an application that reads from a CDAP HBase Table and writes to a Database Table.
+You have now successfully created an application that reads from a CDAP HBase Table and writes to a database table.
 
-To delete the application execute this command using the CDAP CLI::
+Suspending and Deleting
+-----------------------
+You can suspend and delete the application using the CDAP CLI::
+
+  cdap> suspend schedule dbExport.dataPipelineSchedule
+  Successfully suspended schedule 'dataPipelineSchedule' in app 'dbExport'
 
   cdap> delete app dbExport
   Successfully deleted application 'dbExport'

@@ -1,120 +1,131 @@
 {
-    "name": "Flight_Data_Analytics",
-    "artifact": {
-        "name": "cdap-data-streams",
-        "version": "3.5.1",
-        "scope": "SYSTEM"
+  "name": "Flight_Data_Analytics",
+  "artifact": {
+    "name": "cdap-data-streams",
+    "version": "3.5.1",
+    "scope": "SYSTEM",
+    "label": "Data Pipeline - Realtime"
+  },
+  "description": "Spark Streaming pipeline that reads from Kafka and analyzes flight data",
+  "config": {
+    "batchInterval": "10s",
+    "resources": {
+      "memoryMB": 512,
+      "virtualCores": 1
     },
-    "description": "Spark Streaming pipeline that reads from Kafka and produces insights on flight data",
-    "config": {
-        "batchInterval": "10s",
-        "connections": [
-            {
-                "from": "Realtime Kafka Source",
-                "to": "Time Window"
-            },
-            {
-                "from": "Time Window",
-                "to": "Compute Average Altitude"
-            },
-            {
-                "from": "Compute Average Altitude",
-                "to": "Altitude Filter"
-            },
-            {
-                "from": "Altitude Filter",
-                "to": "HDFS Store"
-            }
-        ],
-        "stages": [
-            {
-                "name": "Realtime Kafka Source",
-                "plugin": {
-                    "name": "Kafka",
-                    "type": "streamingsource",
-                    "label": "Realtime Kafka Source",
-                    "artifact": {
-                        "name": "spark-plugins",
-                        "version": "1.4.1",
-                        "scope": "SYSTEM"
-                    },
-                    "properties": {
-                        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"},{\"name\":\"velocity\",\"type\":\"float\"}]}",
-                        "format": "csv",
-                        "brokers": "localhost:9092",
-                        "topics": "flight",
-                        "referenceName": "Kafka"
-                    }
-                }
-            },
-            {
-                "name": "Time Window",
-                "plugin": {
-                    "name": "Window",
-                    "type": "windower",
-                    "label": "Time Window",
-                    "artifact": {
-                        "name": "core-plugins",
-                        "version": "1.4.1",
-                        "scope": "SYSTEM"
-                    },
-                    "properties": {
-                        "width": "60",
-                        "slideInterval": "60"
-                    }
-                }
-            },
-            {
-                "name": "Compute Average Altitude",
-                "plugin": {
-                    "name": "GroupByAggregate",
-                    "type": "batchaggregator",
-                    "label": "Compute Average Altitude",
-                    "artifact": {
-                        "name": "core-plugins",
-                        "version": "1.4.1",
-                        "scope": "SYSTEM"
-                    },
-                    "properties": {
-                        "groupByFields": "destination_airport",
-                        "aggregates": "altitude:Avg(altitude)"
-                    }
-                }
-            },
-            {
-                "name": "Altitude Filter",
-                "plugin": {
-                    "name": "JavaScript",
-                    "type": "transform",
-                    "label": "Altitude Filter",
-                    "artifact": {
-                        "name": "core-plugins",
-                        "version": "1.4.1",
-                        "scope": "SYSTEM"
-                    },
-                    "properties": {
-                        "script": "function transform(input, emitter, context) {\n  if (input.altitude < 500) {\n    emitter.emit(input);\n  }\n}",
-                        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"}]}"
-                    }
-                }
-            },
-            {
-                "name": "HDFS Store",
-                "plugin": {
-                    "name": "TPFSAvro",
-                    "type": "batchsink",
-                    "label": "HDFS Store",
-                    "artifact": {
-                        "name": "core-plugins",
-                        "version": "1.4.1",
-                        "scope": "SYSTEM"
-                    },
-                    "properties": {
-                        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"}]}",
-                        "name": "flight_analytics_altitude"
-                    }
-                }
-            }
-        ]
-    }
+    "driverResources": {
+      "memoryMB": 512,
+      "virtualCores": 1
+    },
+    "comments": [],
+    "postActions": [],
+    "connections": [
+      {
+        "from": "Realtime Kafka Source",
+        "to": "Time Window"
+      },
+      {
+        "from": "Time Window",
+        "to": "Compute Average Altitude"
+      },
+      {
+        "from": "Compute Average Altitude",
+        "to": "Altitude Filter"
+      },
+      {
+        "from": "Altitude Filter",
+        "to": "HDFS Store"
+      }
+    ],
+    "stages": [
+      {
+        "name": "Realtime Kafka Source",
+        "plugin": {
+          "name": "Kafka",
+          "type": "streamingsource",
+          "label": "Realtime Kafka Source",
+          "artifact": {
+            "name": "spark-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"},{\"name\":\"velocity\",\"type\":\"float\"}]}",
+            "format": "csv",
+            "brokers": " ",
+            "topics": "flight",
+            "referenceName": "Kafka"
+          }
+        }
+      },
+      {
+        "name": "Time Window",
+        "plugin": {
+          "name": "Window",
+          "type": "windower",
+          "label": "Time Window",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "width": "60",
+            "slideInterval": "60"
+          }
+        }
+      },
+      {
+        "name": "Compute Average Altitude",
+        "plugin": {
+          "name": "GroupByAggregate",
+          "type": "batchaggregator",
+          "label": "Compute Average Altitude",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "groupByFields": "destination_airport",
+            "aggregates": "altitude:Avg(altitude)"
+          }
+        }
+      },
+      {
+        "name": "Altitude Filter",
+        "plugin": {
+          "name": "JavaScript",
+          "type": "transform",
+          "label": "Altitude Filter",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "script": "function transform(input, emitter, context) {\n if (input.altitude < 500) {\n  emitter.emit(input);\n }\n}",
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"}]}"
+          }
+        }
+      },
+      {
+        "name": "HDFS Store",
+        "plugin": {
+          "name": "TPFSAvro",
+          "type": "batchsink",
+          "label": "HDFS Store",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"destination_airport\",\"type\":\"string\"},{\"name\":\"altitude\",\"type\":\"float\"}]}",
+            "name": "flight_analytics_altitude"
+          }
+        }
+      }
+    ]
+  }
 }

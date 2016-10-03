@@ -1,41 +1,78 @@
 {
+  "artifact": {
+    "name": "cdap-data-pipeline",
+    "version": "3.5.1",
+    "scope": "SYSTEM",
+    "label": "Data Pipeline - Batch"
+  },
+  "description": "",
+  "name": "DBTableToCDAPTable",
   "config": {
-    "schedule": "*/5 * * * *",
+    "resources": {
+      "memoryMB": 512,
+      "virtualCores": 1
+    },
+    "driverResources": {
+      "memoryMB": 512,
+      "virtualCores": 1
+    },
+    "connections": [
+      {
+        "from": "Database",
+        "to": "Table"
+      }
+    ],
+    "comments": [],
+    "postActions": [],
     "stages": [
       {
-        "name": "dbSource",
+        "name": "Database",
         "plugin": {
           "name": "Database",
           "type": "batchsource",
+          "label": "Database",
+          "artifact": {
+            "name": "database-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
           "properties": {
+            "enableAutoCommit": "false",
+            "columnNameCase": "No change",
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"float\",\"null\"]}]}",
             "referenceName": "dbSource",
-            "connectionString": "jdbc:postgresql://localhost:5432/testdb",
-            "user": "postgres",
-            "password": "",
-            "importQuery": "select col1,col2,col3,col4 from my_table where $CONDITIONS",
-            "splitBy": "col1",
-            "numSplits": "1",
-            "boundingQuery": "select min(col1), max(col1) from my_table",
+            "user": "postgres_user",
+            "password": "postgres_password",
             "jdbcPluginName": "postgres",
-            "jdbcPluginType": "jdbc"
+            "jdbcPluginType": "jdbc",
+            "connectionString": "jdbc:postgresql://localhost:5432/testdb",
+            "importQuery": "select col1,col2,col3,col4 from my_table where $CONDITIONS",
+            "boundingQuery": "select min(col1), max(col1) from my_table",
+            "splitBy": "col1",
+            "numSplits": "1"
           }
         }
       },
       {
-        "name": "cdapHBaseSink",
+        "name": "Table",
         "plugin": {
           "name": "Table",
           "type": "batchsink",
+          "label": "Table",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
           "properties": {
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"float\",\"null\"]}]}",
             "name": "hbase_postgres_table",
-            "schema": "{\"type\":\"record\",\"name\":\"my_record\",\"fields\":[{\"name\":\"col1\",\"type\":\"int\"},{\"name\":\"col2\",\"type\":\"string\"},{\"name\":\"col3\",\"type\":\"string\"},{\"name\":\"col4\",\"type\":[\"double\",\"null\"]}]}",
             "schema.row.field": "col1"
           }
         }
       }
     ],
-    "connections": [
-      { "from": "dbSource", "to": "cdapHBaseSink" }
-    ]
+    "schedule": "5 * * * *",
+    "engine": "mapreduce"
   }
 }

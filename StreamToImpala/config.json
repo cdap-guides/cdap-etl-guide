@@ -1,46 +1,87 @@
 {
-  "config":{
-    "schedule":"*/10 * * * *",
-    "stages": [
-      {
-        "name": "streamSource",
-        "plugin": {
-          "name": "Stream",
-          "type": "batchsource",
-          "properties": {
-            "name": "trades",
-            "duration": "10m",
-            "format": "csv",
-            "schema": "{\"type\":\"record\",\"name\":\"event\",\"fields\":[{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
-            "format.setting.delimiter": "|"
-          }
-        }
-      },
-      {
-        "name": "dropHeaders",
-        "plugin": {
-          "name": "Projection",
-          "type": "transform",
-          "properties": {
-            "drop": "headers"
-          }
-        }
-      },
-      {
-        "name": "sink",
-        "plugin": {
-          "name": "TPFSAvro",
-          "type": "batchsink",
-          "properties": {
-            "schema":"{\"type\":\"record\",\"name\":\"streamEvent\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"ticker\",\"type\":\"string\"},{\"name\":\"num\",\"type\":\"int\"},{\"name\":\"price\",\"type\":\"double\"}]}",
-            "name":"trades_converted"
-          }
-        }
-      }
-    ],
-    "connections": [
-      { "from": "streamSource", "to": "dropHeaders" },
-      { "from": "dropHeaders", "to": "sink" }
-    ]
-  }
+    "name": "StreamToImpala",
+    "description": "",
+    "artifact": {
+        "name": "cdap-data-pipeline",
+        "version": "3.5.1",
+        "scope": "SYSTEM"
+    },
+    "config": {
+        "resources": {
+            "memoryMB": 512,
+            "virtualCores": 1
+        },
+        "driverResources": {
+            "memoryMB": 512,
+            "virtualCores": 1
+        },
+        "schedule": "0 * * * *",
+        "connections": [
+            {
+                "from": "Stream",
+                "to": "Projection"
+            },
+            {
+                "from": "Projection",
+                "to": "TPFSAvro"
+            }
+        ],
+        "comments": [],
+        "postActions": [],
+        "engine": "mapreduce",
+        "stages": [
+            {
+                "name": "Stream",
+                "plugin": {
+                    "name": "Stream",
+                    "type": "batchsource",
+                    "label": "Stream",
+                    "artifact": {
+                        "name": "core-plugins",
+                        "version": "1.4.1",
+                        "scope": "SYSTEM"
+                    },
+                    "properties": {
+                        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"remote_host\",\"type\":[\"string\",\"null\"]},{\"name\":\"remote_login\",\"type\":[\"string\",\"null\"]},{\"name\":\"auth_user\",\"type\":[\"string\",\"null\"]},{\"name\":\"request_time\",\"type\":[\"string\",\"null\"]},{\"name\":\"request\",\"type\":[\"string\",\"null\"]},{\"name\":\"status\",\"type\":[\"int\",\"null\"]},{\"name\":\"content_length\",\"type\":[\"int\",\"null\"]},{\"name\":\"referrer\",\"type\":[\"string\",\"null\"]},{\"name\":\"user_agent\",\"type\":[\"string\",\"null\"]}]}",
+                        "format": "csv",
+                        "name": "trades",
+                        "duration": "10m"
+                    }
+                }
+            },
+            {
+                "name": "Projection",
+                "plugin": {
+                    "name": "Projection",
+                    "type": "transform",
+                    "label": "Projection",
+                    "artifact": {
+                        "name": "core-plugins",
+                        "version": "1.4.1",
+                        "scope": "SYSTEM"
+                    },
+                    "properties": {
+                        "drop": "headers"
+                    }
+                }
+            },
+            {
+                "name": "TPFSAvro",
+                "plugin": {
+                    "name": "TPFSAvro",
+                    "type": "batchsink",
+                    "label": "TPFSAvro",
+                    "artifact": {
+                        "name": "core-plugins",
+                        "version": "1.4.1",
+                        "scope": "SYSTEM"
+                    },
+                    "properties": {
+                        "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"ts\",\"type\":\"long\"},{\"name\":\"remote_host\",\"type\":[\"string\",\"null\"]},{\"name\":\"remote_login\",\"type\":[\"string\",\"null\"]},{\"name\":\"auth_user\",\"type\":[\"string\",\"null\"]},{\"name\":\"request_time\",\"type\":[\"string\",\"null\"]},{\"name\":\"request\",\"type\":[\"string\",\"null\"]},{\"name\":\"status\",\"type\":[\"int\",\"null\"]},{\"name\":\"content_length\",\"type\":[\"int\",\"null\"]},{\"name\":\"referrer\",\"type\":[\"string\",\"null\"]},{\"name\":\"user_agent\",\"type\":[\"string\",\"null\"]}]}",
+                        "name": "trades_converted"
+                    }
+                }
+            }
+        ]
+    }
 }

@@ -1,36 +1,67 @@
-{  
-  "config":{  
-    "instances": 1,
+{
+  "artifact": {
+    "name": "cdap-etl-realtime",
+    "version": "3.5.1",
+    "scope": "SYSTEM",
+    "label": "Realtime (Deprecated)"
+  },
+  "description": "",
+  "name": "RealtimeJMStoStream",
+  "config": {
+    "resources": {
+      "virtualCores": 1,
+      "memoryMB": 512
+    },
+    "driverResources": {
+      "virtualCores": 1,
+      "memoryMB": 512
+    },
+    "connections": [
+      {
+        "from": "JMS",
+        "to": "Stream"
+      }
+    ],
+    "comments": [],
+    "postActions": [],
     "stages": [
       {
-        "name": "jmsSource",
-        "plugin": {  
+        "name": "JMS",
+        "plugin": {
           "name": "JMS",
           "type": "realtimesource",
-          "properties":{
+          "label": "JMS",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "jms.messages.receive": "50",
             "referenceName": "jmsSource",
             "jms.destination.name": "cdap.testtopic",
-            "jms.messages.receive": "50",
-            "jms.factory.initial": "org.apache.activemq.jndi.ActiveMQInitialContextFactory",
             "jms.provider.url": "tcp://localhost:61616",
-            "topic.cdap.testtopic": "cdap.testtopic"
+            "jms.factory.initial": "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
           }
         }
       },
-      {  
-        "name": "streamSink",
+      {
+        "name": "Stream",
         "plugin": {
           "name": "Stream",
           "type": "realtimesink",
-          "properties":{  
-            "name": "jmsStream",
-            "body.field": "message"
+          "label": "Stream",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
+          "properties": {
+            "name": "streamSink"
           }
         }
       }
     ],
-    "connections": [
-      { "from": "jmsSource", "to": "streamSink" }
-    ]
+    "instances": 1
   }
 }
