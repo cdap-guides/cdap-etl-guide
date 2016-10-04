@@ -3,7 +3,7 @@ Batch CDAP HBase Table to Database Table Application Configuration
 ==================================================================
 
 The built-in ``cdap-data-pipeline`` system artifact can be used to create a data pipeline
-application that reads from a Batch Source and persists it to a Sink. In this example, we
+application that reads from a batch source and persists it to a sink. In this example, we
 will read an entire CDAP HBase table in batch mode and use a Database Sink to write the
 table's rows to a database.
 
@@ -13,9 +13,9 @@ you can use to accomplish the above task. Our sample application uses these comp
 - The ``cdap-data-pipeline`` system artifact, since we want to perform the pipeline in batch
 - Table source, to read data from the CDAP HBase table 
 - Database sink, to write the data from the CDAP HBase table to a database table
-- A JAR file containing the JDBC driver for your database. With this, you will need a JSON file 
-  that describes the JDBC driver as an external plugin. See ``mysql-connector-java-5.1.35.json`` and 
-  ``postgresql-9.4.json`` as examples.
+- A JAR file containing the JDBC driver for your database. With this, you will need a JSON
+  file that describes the JDBC driver as an external plugin. See
+  ``mysql-connector-java-5.1.35.json`` and ``postgresql-9.4.json`` as examples.
 
 You can create and start the application by using the CDAP CLI (or you can use the Cask
 Hydrator UI for a more visual approach).
@@ -34,9 +34,9 @@ Hydrator UI for a more visual approach).
 Configurations for the CDAP HBase Table Source
 ==============================================
 
-#. ``name``: This is the name of the HBase table to use as a source.
+#. ``name``: The name of the HBase table to use as a source.
 
-#. ``schema``: This is the JSON representation of the HBase Table's schema.
+#. ``schema``: The JSON representation of the HBase Table's schema.
 
 #. ``schema.row.field``: Optional field name indicating that the field value should come from the row key 
    instead of a row column. The field name specified must be present in the schema, and must not be nullable.
@@ -54,7 +54,8 @@ Configurations for the Database Table Sink
 #. ``user``: This is the username used to connect to the specified database. It is required for databases 
    that need authentication, optional for those that do not.
    
-#. ``password``: This is the password used to connect to the specified database.
+#. ``password``: This is the password used to connect to the specified database. It is 
+   required for databases that need authentication, optional for those that do not.
 
 #. ``columns``: This is a comma-separated list of columns in the database table to which data from the 
    HBase table will be written.
@@ -81,10 +82,8 @@ For example, to use PostgreSQL::
   cdap> load artifact /path/to/postgresql-9.4-1203.jdbc41.jar config-file CDAPTableToDBTable/postgresql-9.4.json
   Successfully added artifact with name 'postgresql'
 
-
-load artifact ~/Desktop/postgresql-9.4-1203.jdbc41.jar config-file ~/Source/cdap-etl-guide/CDAPTableToDBTable/postgresql-9.4.json
-
-Create an application named ``dbExport`` (replace <version> with your CDAP version)::
+Modify ``config.json`` to match your database settings, then create an application
+named ``dbExport`` (replace <version> with your CDAP version)::
 
   cdap> create app dbExport cdap-data-pipeline <version> system CDAPTableToDBTable/config.json
   Successfully created application
