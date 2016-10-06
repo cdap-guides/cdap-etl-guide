@@ -1,35 +1,69 @@
 {
+  "name": "RealtimeTwitterToHBase",
+  "artifact": {
+    "name": "cdap-data-streams",
+    "version": "3.5.1",
+    "scope": "SYSTEM",
+    "label": "Data Pipeline - Realtime"
+  },
+  "description": "",
   "config": {
+    "resources": {
+      "memoryMB": 512,
+      "virtualCores": 1
+    },
+    "driverResources": {
+      "memoryMB": 512,
+      "virtualCores": 1
+    },
+    "connections": [
+      {
+        "from": "Twitter",
+        "to": "tweetTable"
+      }
+    ],
+    "comments": [],
+    "postActions": [],
     "stages": [
       {
-        "name": "tableSink",
+        "name": "Twitter",
         "plugin": {
-          "name": "Table",
-          "type": "realtimesink",
+          "name": "Twitter",
+          "type": "streamingsource",
+          "label": "Twitter",
+          "artifact": {
+            "name": "spark-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
           "properties": {
-            "name": "tweetTable",
-              "schema.row.field": "id",
-              "schema": "{\"type\":\"record\",\"name\":\"tweet\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}"
+            "referenceName": "twitterSource",
+            "ConsumerKey": "GetConsumerKeyFromTwitter",
+            "ConsumerSecret": "GetConsumerSecretFromTwitter",
+            "AccessToken": "GetAccessTokenFromTwitter",
+            "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
           }
         }
       },
       {
-        "name": "twitterSource",
+        "name": "tweetTable",
         "plugin": {
-          "name": "Twitter",
-          "type": "realtimesource",
+          "name": "Table",
+          "type": "batchsink",
+          "label": "tweetTable",
+          "artifact": {
+            "name": "core-plugins",
+            "version": "1.4.1",
+            "scope": "SYSTEM"
+          },
           "properties": {
-            "AccessToken": "GetAccessTokenFromTwitter",
-            "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
-            "ConsumerKey": "GetConsumerKeyFromTwitter",
-            "ConsumerSecret": "GetConsumerSecretFromTwitter"
+            "schema": "{\"type\":\"record\",\"name\":\"etlSchemaBody\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"message\",\"type\":\"string\"},{\"name\":\"lang\",\"type\":[\"string\",\"null\"]},{\"name\":\"time\",\"type\":[\"long\",\"null\"]},{\"name\":\"favCount\",\"type\":\"int\"},{\"name\":\"rtCount\",\"type\":\"int\"},{\"name\":\"source\",\"type\":[\"string\",\"null\"]},{\"name\":\"geoLat\",\"type\":[\"double\",\"null\"]},{\"name\":\"geoLong\",\"type\":[\"double\",\"null\"]},{\"name\":\"isRetweet\",\"type\":\"boolean\"}]}",
+            "name": "tweetTable",
+            "schema.row.field": "id"
           }
         }
       }
     ],
-    "connections": [
-      { "from": "twitterSource", "to": "tableSink" }
-    ]
+    "batchInterval": "10s"
   }
 }
-
