@@ -39,7 +39,7 @@
           "properties": {
             "referenceName": "twitterSource",
             "ConsumerKey": "GetConsumerKeyFromTwitter",
-            "ConsumerSecret": "GetConsumerSecretFromTwitter"
+            "ConsumerSecret": "GetConsumerSecretFromTwitter",
             "AccessToken": "GetAccessTokenFromTwitter",
             "AccessTokenSecret": "GetAccessTokenSecretFromTwitter",
           }
