@@ -4,8 +4,8 @@
     {
       "type" : "JMSProvider",
       "name" : "java.naming.factory.initial",
-      "description" : "JMS Provider for ActiveMQ 5.11.1 ConnectionFactory",
-      "className" : "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+      "className" : "org.apache.activemq.jndi.ActiveMQInitialContextFactory",
+      "description" : "JMS Provider for ActiveMQ 5.11.1 ConnectionFactory"
     }
   ]
 }
