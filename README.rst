@@ -29,7 +29,7 @@ What You Will Create
 .. |DBTableToCDAPTable| replace:: **Batch Database Table to CDAP HBase Table:**
 .. _DBTableToCDAPTable: DBTableToCDAPTable
 
-- |DBTableToCDAPTable|_ In this application, we will export the contents of a Database Table to a CDAP HBase table in Batch.
+- |DBTableToCDAPTable|_ This application exports the contents of a Database Table to a CDAP HBase table in Batch.
 
 
 .. |StreamToImpala| replace:: **Batch CDAP Stream to Impala:**
@@ -41,7 +41,7 @@ What You Will Create
 .. |RealtimeJMSToStream| replace:: **Real-time JMS to Stream:**
 .. _RealtimeJMSToStream: RealtimeJMSToStream
 
-- |RealtimeJMSToStream|_ In this application, we will read messages from a JMS producer in real time and write to a CDAP Stream.
+- |RealtimeJMSToStream|_ This application reads messages from a JMS producer in real time and writes to a CDAP Stream.
 
 
 .. |RealtimeKafkaToTPFSAvro| replace:: **Real-time Kafka to TPFS Avro:**
@@ -53,7 +53,7 @@ What You Will Create
 .. |RealtimeTwitterToHBase| replace:: **Real-time Twitter to HBase:**
 .. _RealtimeTwitterToHBase: RealtimeTwitterToHBase
 
-- |RealtimeTwitterToHBase|_ In this application, we will read Tweets from Twitter in real time and write to an HBase Table.
+- |RealtimeTwitterToHBase|_ This application reads Tweets from Twitter in real time and write to an HBase Table.
 
 
 What You Will Need
@@ -80,7 +80,19 @@ If you haven't already started a standalone CDAP installation, start it with the
   $ cdap.sh start
 
 Now navigate to the Hydrator Application that you want to create and you will find further
-instructions on how to create that specific application.
+instructions on how to create that specific application:
+
+- |CDAPTableToDBTable|_ This application exports the contents of a CDAP HBase Table to a Database Table in Batch.
+
+- |DBTableToCDAPTable|_ This application exports the contents of a Database Table to a CDAP HBase table in Batch.
+
+- |StreamToImpala|_ This application makes the events ingested in a CDAP Stream queryable through Impala.
+
+- |RealtimeJMSToStream|_ This application reads messages from a JMS producer in real time and writes to a CDAP Stream.
+
+- |RealtimeKafkaToTPFSAvro|_ This application fetches messages from Kafka in real time and writes to Time-PartitionedFileSets in Avro format.
+
+- |RealtimeTwitterToHBase|_ This application reads Tweets from Twitter in real time and write to an HBase Table.
 
 
 Share and Discuss!
