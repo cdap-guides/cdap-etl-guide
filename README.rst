@@ -66,7 +66,7 @@ What You Will Need
 Let's Begin!
 ============
 For these guides, we will use the CDAP CLI to create and manage Hydrator Applications. The CLI
-commands assume that the ``cdap-cli.sh`` script is available on your PATH. If this is not
+commands assume that the ``cdap`` script is available on your PATH. If this is not
 the case, please add it::
 
   $ export PATH=$PATH:<CDAP home>/bin
@@ -77,7 +77,7 @@ or, from within the <CDAP home> directory::
 
 If you haven't already started a standalone CDAP installation, start it with the command::
 
-  $ cdap.sh start
+  $ cdap sdk start
 
 Now navigate to the Hydrator Application that you want to create and you will find further
 instructions on how to create that specific application:
@@ -101,7 +101,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 
 License
 =======
-Copyright © 2015-2016 Cask Data, Inc.
+Copyright © 2015-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
