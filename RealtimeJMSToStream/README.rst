@@ -19,6 +19,7 @@ You can create and start the application by using the CDAP CLI (or you can use t
 Hydrator UI for a more visual approach).
 
 **Notes:**
+
 - As ``cdap-etl-realtime`` has been deprecated, this example is deprecated and will be
   updated or removed in a later release.
 
