@@ -53,7 +53,7 @@ Starting CDAP
 =============
 If you haven't already, start your CDAP installation::
 
-  $ cdap.sh start
+  $ cdap sdk start
   
 
 Creating a Hydrator Application using the CDAP CLI
@@ -126,7 +126,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 License
 =======
 
-Copyright © 2016 Cask Data, Inc.
+Copyright © 2016-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
