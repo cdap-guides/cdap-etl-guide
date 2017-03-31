@@ -3,7 +3,7 @@ Real-time Twitter to HBase Application Configuration
 ====================================================
 
 If you want to fetch Tweets from Twitter in real time and persist them in an HBase Table,
-you can using Hydrator. The ``cdap-data-streams`` system artifact can be used to create an
+you can using a CDAP pipeline. The ``cdap-data-streams`` system artifact can be used to create an
 Application that reads from a real-time source and persists it to a real-time sink. In
 this example, we will read messages from Twitter and use a TableSink to write the Tweets
 to HBase.
@@ -13,12 +13,12 @@ Configuration
 The file `config.json <config.json>`__ contains a sample Application configuration that
 you can use to accomplish the above task.
 
-You can create and start the Application by using the CDAP CLI (or you can use the Cask
-Hydrator UI for a more visual approach).
+You can create and start the Application by using the CDAP CLI (or you can use the CDAP
+UI for a more visual approach).
 
 **Notes:**
 
-- If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
+- If you want to import the ``config.json`` into the CDAP UI, you will need to
   adjust the version of the ``artifact`` property to described the system artifact being
   used. You can create an initial application as described here using the CLI and then
   clone it in the UI to develop it further.
@@ -55,7 +55,7 @@ Twitter source:
 
 Creating and Running
 ====================
-Create a Hydrator application named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
+Create a pipeline application named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
 
   cdap> create app tweetApp cdap-data-streams <version> system RealtimeTwitterToHBase/config.json
   Successfully created application
@@ -104,7 +104,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 License
 =======
 
-Copyright © 2015-2016 Cask Data, Inc.
+Copyright © 2015-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain

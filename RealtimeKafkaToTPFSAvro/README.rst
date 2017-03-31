@@ -30,18 +30,18 @@ and
 
 **Notes:**
 
-- You can create and start the application by using the CDAP CLI (or you can use the Cask
-  Hydrator UI for a more visual approach).
+- You can create and start the application by using the CDAP CLI (or you can use the CDAP
+  UI for a more visual approach).
 
-- You can import the `config.json <config.json>`__ into the Cask Hydrator UI: you can
-  either import it directly and run it from Hydrator as-is, or you can create an initial
+- You can import the `config.json <config.json>`__ into the CDAP UI: you can
+  either import it directly and run it from CDAP as-is, or you can create an initial
   application as described here using the CLI and then clone it in the UI to develop it
   further.
   
 - You need to complete the ``artifact`` version to match the version of CDAP that you are
   using. The version currently in the ``config.json`` is ``3.5.1``.
 
-- You need to complete the ``plugin`` version to match the version of the Hydrator plugins
+- You need to complete the ``plugin`` version to match the version of the CDAP plugins
   that you are using. The version currently in the ``config.json`` is ``1.4.1``.
 
 - This configuration is designed to be used with the CDAP SDK, and uses the SDK's
@@ -53,12 +53,12 @@ Starting CDAP
 =============
 If you haven't already, start your CDAP installation::
 
-  $ cdap.sh start
+  $ cdap sdk start
   
 
-Creating a Hydrator Application using the CDAP CLI
-==================================================
-From within the CDAP CLI, create a Hydrator application named ``flightIngest``, replacing
+Creating a CDAP Application using the CDAP CLI
+==============================================
+From within the CDAP CLI, create a pipeline application named ``flightIngest``, replacing
 <version> with your CDAP version::
 
   cdap> create app flightIngest cdap-data-streams <version> system RealtimeKafkaToTPFSAvro/config.json
@@ -126,7 +126,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 License
 =======
 
-Copyright © 2016 Cask Data, Inc.
+Copyright © 2016-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain

@@ -13,19 +13,19 @@ you can use to accomplish the above task. Our sample application uses these comp
 - Stream source, configured to read from the *trades* stream
 - TPFSAvro sink, configured to write to the *trades_converted* dataset
 
-You can create and start the application by using the CDAP CLI (or you can use the Cask
-Hydrator UI for a more visual approach).
+You can create and start the application by using the CDAP CLI (or you can use the CDAP
+UI for a more visual approach).
 
 **Notes:**
   
-- If you want to import the ``config.json`` into the Cask Hydrator UI, you will need to
+- If you want to import the ``config.json`` into the CDAP UI, you will need to
   modify it to include an ``artifact`` property describing the system artifact being used.
   You can create an initial application as described here using the CLI and then clone it
   in the UI to develop it further.
 
 
-Creating a Hydrator Application using the CDAP CLI
-==================================================
+Creating a CDAP Application using the CDAP CLI
+==============================================
 First, load some trade events to be processed by your application::
 
   cdap> create stream trades
@@ -91,7 +91,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 
 License
 =======
-Copyright © 2015-2016 Cask Data, Inc.
+Copyright © 2015-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
