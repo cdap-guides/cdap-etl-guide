@@ -37,7 +37,7 @@ and
   either import it directly and run it from CDAP as-is, or you can create an initial
   application as described here using the CLI and then clone it in the UI to develop it
   further.
-  
+
 - You need to complete the ``artifact`` version to match the version of CDAP that you are
   using. The version currently in the ``config.json`` is ``3.5.1``.
 
@@ -54,11 +54,11 @@ Starting CDAP
 If you haven't already, start your CDAP installation::
 
   $ cdap sdk start
-  
 
-Creating a CDAP Application using the CDAP CLI
-==============================================
-From within the CDAP CLI, create a pipeline application named ``flightIngest``, replacing
+
+Creating a CDAP Pipeline using the CDAP CLI
+===========================================
+From within the CDAP CLI, create a pipeline named ``flightIngest``, replacing
 <version> with your CDAP version::
 
   cdap> create app flightIngest cdap-data-streams <version> system RealtimeKafkaToTPFSAvro/config.json
@@ -78,7 +78,7 @@ Kafka needs to match the version being used in CDAP. For example, you can obtain
 
   $ tar -xzf kafka_2.10-0.8.2.0.tgz
   $ cd kafka_2.10-0.8.2.0
-  
+
 Now, while the CDAP application is running, send it the flight sensor data::
 
   $ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic flight < RealtimeKafkaToTPFSAvro/flight_sensor_data.csv

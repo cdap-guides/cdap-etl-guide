@@ -4,16 +4,16 @@ Real-time Twitter to HBase Application Configuration
 
 If you want to fetch Tweets from Twitter in real time and persist them in an HBase Table,
 you can using a CDAP pipeline. The ``cdap-data-streams`` system artifact can be used to create an
-Application that reads from a real-time source and persists it to a real-time sink. In
+application that reads from a real-time source and persists it to a real-time sink. In
 this example, we will read messages from Twitter and use a TableSink to write the Tweets
 to HBase.
 
 Configuration
 =============
-The file `config.json <config.json>`__ contains a sample Application configuration that
+The file `config.json <config.json>`__ contains a sample application configuration that
 you can use to accomplish the above task.
 
-You can create and start the Application by using the CDAP CLI (or you can use the CDAP
+You can create and start the application by using the CDAP CLI (or you can use the CDAP
 UI for a more visual approach).
 
 **Notes:**
@@ -22,7 +22,7 @@ UI for a more visual approach).
   adjust the version of the ``artifact`` property to described the system artifact being
   used. You can create an initial application as described here using the CLI and then
   clone it in the UI to develop it further.
-  
+
 - You need to complete the source and sink configurations as described below before
   creating your application.
 
@@ -30,7 +30,7 @@ Source
 ------
 We choose the Twitter source and provide the OAuth credentials as properties to the source.
 
-For selecting the source, we use the "source" property. The Twitter source expects four properties 
+For selecting the source, we use the "source" property. The Twitter source expects four properties
 (OAuth credentials for Twitter):
 
 - ``AccessToken``
@@ -39,7 +39,7 @@ For selecting the source, we use the "source" property. The Twitter source expec
 - ``ConsumerSecret``
 
 Note: You need to fill in the OAuth credentials in ``config.json`` before creating the
-Application. You can visit `Twitter <https://dev.twitter.com>`__ and
+application. You can visit `Twitter <https://dev.twitter.com>`__ and
 `dev.Twitter <https://dev.twitter.com/oauth/overview/application-owner-access-tokens>`__
 for information on how to obtain OAuth credentials for the Twitter source.
 
@@ -55,7 +55,7 @@ Twitter source:
 
 Creating and Running
 ====================
-Create a pipeline application named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
+Create a pipeline named ``tweetApp`` (replace <version> with your CDAP version) using the CDAP CLI::
 
   cdap> create app tweetApp cdap-data-streams <version> system RealtimeTwitterToHBase/config.json
   Successfully created application
@@ -82,12 +82,12 @@ You can verify that the data is being written to the ``tweetTable`` dataset by e
   +================================================================================================================+
   Fetched 5 rows
 
-You have now successfully created an Application that retrieves Tweet data from Twitter and writes to an HBase Table.
+You have now successfully created an application that retrieves Tweet data from Twitter and writes to an HBase Table.
 
 
 Stopping and Deleting
 ---------------------
-You can stop and delete the Application using the CDAP CLI::
+You can stop and delete the pipeline using the CDAP CLI::
 
   cdap> stop spark tweetApp.DataStreamsSparkStreaming
   Successfully stopped Spark program 'DataStreamsSparkStreaming' of application 'tweetApp'

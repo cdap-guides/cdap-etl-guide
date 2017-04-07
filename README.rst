@@ -1,16 +1,17 @@
-==========================================================
-Creating Pipeline Applications using CDAP System Artifacts
-==========================================================
+===================================================
+Creating CDAP Pipelines using CDAP System Artifacts
+===================================================
 
-Using the built-in ``cdap-data-pipeline`` and ``cdap-data-streams`` system artifacts, you can
-create CDAP Pipelines (CDAP Applications) with just a JSON configuration file. CDAP ships
-with a set of built-in Sources, Sinks, Transforms, and other plugins (described `here
-<http://docs.cdap.io/cdap/current/en/developers-manual/pipelines/plugins/index.html>`__) which can be used
-to create batch and real-time data pipeline applications right out of the box.
+Using the built-in ``cdap-data-pipeline`` and ``cdap-data-streams`` system artifacts, you
+can create CDAP pipelines with just a JSON configuration file. CDAP ships with a set of
+built-in Sources, Sinks, Transforms, and other plugins (described `here
+<http://docs.cask.co/cdap/current/en/developers-manual/pipelines/plugins/index.html>`__)
+which can be used to create batch and real-time data pipeline applications right out of
+the box.
 
 Note: If you want to create your own Source, Sink, or other plugin, you can find more
 instructions on how to do that `here
-<http://docs.cdap.io/cdap/current/en/developers-manual/pipelines/developing-plugins/index.html>`__.
+<http://docs.cask.co/cdap/current/en/developers-manual/pipelines/developing-plugins/index.html>`__.
 
 **Note:** Both the ``cdap-etl-batch`` and ``cdap-etl-realtime`` system artifacts have been
 deprecated as of CDAP 3.5.0 and replaced with the artifacts ``cdap-data-pipeline`` and
@@ -60,17 +61,17 @@ What You Will Need
 ==================
 
 - `JDK 7 or 8 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__
-- `CDAP SDK <http://docs.cdap.io/cdap/current/en/developers-manual/getting-started/standalone/index.html>`__
+- `CDAP SDK <http://docs.cask.co/cdap/current/en/developers-manual/getting-started/standalone/index.html>`__
 
 
 Let's Begin!
 ============
-For these guides, we will use the CDAP CLI to create and manage CDAP Pipeline Applications. The CLI
+For these guides, we will use the CDAP CLI to create and manage CDAP pipelines. The CLI
 commands assume that the ``cdap`` script is available on your PATH. If this is not
 the case, please add it::
 
   $ export PATH=$PATH:<CDAP home>/bin
-  
+
 or, from within the <CDAP home> directory::
 
   $ export PATH=${PATH}:`pwd`/bin
@@ -79,7 +80,7 @@ If you haven't already started a Standalone CDAP installation, start it with the
 
   $ cdap sdk start
 
-Now navigate to the CDAP Application that you want to create and you will find further
+Now navigate to the CDAP pipeline example (see list above) that you want to create and you will find further
 instructions on how to create that specific application.
 
 
