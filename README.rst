@@ -1,16 +1,17 @@
-==========================================================
-Creating Hydrator Applications using CDAP System Artifacts
-==========================================================
+===================================================
+Creating CDAP Pipelines using CDAP System Artifacts
+===================================================
 
-Using the built-in ``cdap-data-pipeline`` and ``cdap-data-streams`` system artifacts, you can
-create Cask Hydrator Pipelines (Hydrator Applications) with just a JSON configuration file. CDAP ships
-with a set of built-in Sources, Sinks, Transforms, and other plugins (described `here
-<http://docs.cdap.io/cdap/current/en/hydrator-manual/plugins/index.html>`__) which can be used
-to create batch and real-time data pipeline applications right out of the box.
+Using the built-in ``cdap-data-pipeline`` and ``cdap-data-streams`` system artifacts, you
+can create CDAP pipelines with just a JSON configuration file. CDAP ships with a set of
+built-in Sources, Sinks, Transforms, and other plugins (described `here
+<https://docs.cask.co/cdap/current/en/developers-manual/pipelines/plugins/index.html>`__)
+which can be used to create batch and real-time data pipeline applications right out of
+the box.
 
 Note: If you want to create your own Source, Sink, or other plugin, you can find more
 instructions on how to do that `here
-<http://docs.cdap.io/cdap/current/en/hydrator-manual/developing-plugins/index.html>`__.
+<https://docs.cask.co/cdap/current/en/developers-manual/pipelines/developing-plugins/index.html>`__.
 
 **Note:** Both the ``cdap-etl-batch`` and ``cdap-etl-realtime`` system artifacts have been
 deprecated as of CDAP 3.5.0 and replaced with the artifacts ``cdap-data-pipeline`` and
@@ -60,26 +61,26 @@ What You Will Need
 ==================
 
 - `JDK 7 or 8 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__
-- `CDAP SDK <http://docs.cdap.io/cdap/current/en/developers-manual/getting-started/standalone/index.html>`__
+- `CDAP Local Sandbox <https://docs.cask.co/cdap/current/en/developers-manual/getting-started/local-sandbox/index.html>`__
 
 
 Let's Begin!
 ============
-For these guides, we will use the CDAP CLI to create and manage Hydrator Applications. The CLI
-commands assume that the ``cdap-cli.sh`` script is available on your PATH. If this is not
+For these guides, we will use the CDAP CLI to create and manage CDAP pipelines. The CLI
+commands assume that the ``cdap`` script is available on your PATH. If this is not
 the case, please add it::
 
   $ export PATH=$PATH:<CDAP home>/bin
-  
+
 or, from within the <CDAP home> directory::
 
   $ export PATH=${PATH}:`pwd`/bin
 
-If you haven't already started a standalone CDAP installation, start it with the command::
+If you haven't already started a CDAP Local Sandbox installation, start it with the command::
 
-  $ cdap.sh start
+  $ cdap sandbox start
 
-Now navigate to the Hydrator Application that you want to create and you will find further
+Now navigate to the CDAP pipeline example (see list above) that you want to create and you will find further
 instructions on how to create that specific application.
 
 
@@ -89,7 +90,7 @@ Have a question? Discuss at the `CDAP User Mailing List <https://groups.google.c
 
 License
 =======
-Copyright © 2015-2016 Cask Data, Inc.
+Copyright © 2015-2017 Cask Data, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
